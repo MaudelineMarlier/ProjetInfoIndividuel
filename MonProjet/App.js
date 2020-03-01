@@ -46,7 +46,10 @@ export default class App extends Component {
           <Header
             containerStyle={{ backgroundColor: "#8343CA" }}
             leftComponent={{ icon: "menu", color: "#fff" }}
-            centerComponent={{ text: "MY TITLE", style: { color: "#fff" } }}
+            centerComponent={{
+              text: "Titre de l'appli...",
+              style: { color: "#fff" }
+            }}
             rightComponent={{
               icon: "settings",
               color: "#fff",
