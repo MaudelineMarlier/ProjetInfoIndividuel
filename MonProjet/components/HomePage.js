@@ -1,72 +1,108 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, View, Button, TouchableOpacity } from "react-native";
-import { Header, Image } from "react-native-elements";
-// import { render } from "react-dom";
-// import "react-native-gesture-handler";
+import {
+  StyleSheet,
+  Text,
+  ImageBackground,
+  View,
+  Button,
+  TouchableOpacity
+} from "react-native";
+import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-// import "react-native-gesture-handler";
-import JupiterPage from "./JupiterPage";
-import SaturnePage from "./SaturnePage";
+import { TextInput } from "react-native-gesture-handler";
 
-export class HomePage extends Component {
-  render() {
-    return (
-      <NavigationContainer>
-        <View style={styles.container}>
-          <Header
-            containerStyle={{ backgroundColor: "#8343CA" }}
-            leftComponent={{ icon: "menu", color: "#fff" }}
-            centerComponent={{
-              text: "Titre de l'appli...",
-              style: { color: "#fff" }
-            }}
-            rightComponent={{
-              icon: "settings",
-              color: "#fff",
-              onPress: () => {
-                alert("Go back!");
-              }
-            }}
-          />
+export default class MealPage extends React.Component {
+render () {
+  return (
+    <View style={styles.lignePlanete}>
+      <TouchableOpacity onPress={() => navigation.navigate("Jupiter")}>
+        <ImageBackground
+          source={require("./jupiter1.jpg")}
+          style={{ width: 110, height: 110, marginTop: 60 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Saturne")}>
+        <ImageBackground
+          source={require("./saturne1.jpg")}
+          style={{ width: 120, height: 100, marginBottom: 30 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Terre")}>
+        <ImageBackground
+          source={require("./terre1.jpg")}
+          style={{ width: 110, height: 110, marginTop: 60 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.lignePlanete}>
+      <TouchableOpacity onPress={() => navigation.navigate("Mars")}>
+        <ImageBackground
+          source={require("./mars1.jpg")}
+          style={{ width: 110, height: 110 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Soleil")}>
+        <ImageBackground
+          source={require("./soleil1.jpg")}
+          style={{ width: 140, height: 140, marginLeft: 10 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Mercure")}>
+        <ImageBackground
+          source={require("./mercure1.jpg")}
+          style={{ width: 110, height: 110 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+    </View>
+    <View style={styles.lignePlanete}>
+      <TouchableOpacity onPress={() => navigation.navigate("Neptune")}>
+        <ImageBackground
+          source={require("./neptune1.jpg")}
+          style={{ width: 110, height: 110, marginBottom: 30 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Uranus")}>
+        <ImageBackground
+          source={require("./uranus1.jpg")}
+          style={{ width: 100, height: 113, marginTop: 40 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Venus")}>
+        <ImageBackground
+          source={require("./venus1.jpg")}
+          style={{ width: 110, height: 110, marginBottom: 30 }}
+        >
+          <Text style={{ color: "white", textAlign: "center" }}>{"\n"}</Text>
+        </ImageBackground>
+      </TouchableOpacity>
+    </View>
+  )}}
 
-          <View style={styles.soleil}>
-            <TouchableOpacity style={styles.container}>
-              <Text>Saturne</Text>
-            </TouchableOpacity>
-            <Button
-              title="Aller à Jupiter"
-              color="blue"
-              onPress={() => this.props.navigation.navigate("Jupiter")}
-            />
-          </View>
-        </View>
-      </NavigationContainer>
-    );
-  }
-}
-
-export default class App extends Component {
-  render() {
-    return <AppStackNavigator />;
-  }
-}
-
-const AppStackNavigator = createStackNavigator({
-  Home: HomePage,
-  Jupiter: JupiterPage,
-  Saturne: SaturnePage
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "white"
-  },
-  soleil: {
-    alignItems: "center",
-    top: 10,
-    left: 10,
-    flexDirection: "row"
-  }
-});
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: "blue",
+      alignItems: "center"
+    },
+    lignePlanete: {
+      alignItems: "center",
+      flexDirection: "row"
+    }
+  });
