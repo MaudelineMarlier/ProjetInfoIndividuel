@@ -120,26 +120,6 @@ function JupiterScreen({ navigation }) {
 function JouerJupiterScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
-      <Text style={styles.instructions}>
-        Remplis ces phrases pour aider Thomas à coloniser Jupiter !
-      </Text>
-      <View
-        style={{
-          flexDirection: "row",
-          marginTop: 15,
-          borderWidth: 2,
-          borderColor: "black"
-        }}
-      >
-        <Text> {"     "}Le petit Leo se trouve </Text>
-        <TextInput
-          style={{
-            borderColor: "black",
-            backgroundColor: "lightgrey"
-          }}
-        ></TextInput>
-        <Text style={{}}> dans le noir </Text>
-      </View>
       <JouerJupiter />
     </View>
   );
@@ -366,5 +346,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 20,
     marginHorizontal: 30
+  },
+  phraseTrou: {
+    marginTop: 7,
+    marginBottom: 10
   }
 });

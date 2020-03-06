@@ -64,7 +64,24 @@ export default class JouerJupiter extends Component {
   };
   render() {
     return (
-      <View>
+      <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
+        <Text style={styles.instructions}>
+          Remplis ces phrases pour aider Thomas à coloniser Jupiter ! {"\n"}
+          {"\n"}
+          Clique sur le mot que tu penses être le bon puis valide ta réponse
+        </Text>
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: 15,
+            borderWidth: 2,
+            borderColor: "black"
+          }}
+        >
+          <Text style={styles.phraseTrou}>
+            {"       "}Le petit Leo se trouve ____ dans le noir {"       "}
+          </Text>
+        </View>
         <View style={styles.container}>
           <TouchableOpacity
             style={
@@ -74,7 +91,7 @@ export default class JouerJupiter extends Component {
             }
             onPress={this.onPress1}
           >
-            <Text> Bouton 1 </Text>
+            <Text> perdu </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={
@@ -84,7 +101,7 @@ export default class JouerJupiter extends Component {
             }
             onPress={this.onPress2}
           >
-            <Text> Bouton 2 </Text>
+            <Text> perdus </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={
@@ -94,7 +111,7 @@ export default class JouerJupiter extends Component {
             }
             onPress={this.onPress3}
           >
-            <Text> Bouton 3 </Text>
+            <Text> perdue </Text>
           </TouchableOpacity>
         </View>
         <Button
@@ -111,14 +128,16 @@ export default class JouerJupiter extends Component {
           onTouchOutside={() => {
             this.setState({ visible1: false });
           }}
+          style={styles.dialogBonneReponse}
         >
-          <Text> Bien joué !</Text>
+          <Text> Réponse bonne</Text>
         </Dialog>
         <Dialog
           visible={this.state.visible2}
           onTouchOutside={() => {
             this.setState({ visible2: false });
           }}
+          style={styles.dialogMauvaiseRéponse}
         >
           <Text> Mauvaise réponse... </Text>
         </Dialog>
@@ -134,14 +153,34 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   button: {
-    marginTop: 300,
+    marginTop: 30,
+    marginBottom: 150,
+    marginHorizontal: 20,
     alignItems: "center",
     backgroundColor: "lightblue",
     padding: 10
   },
   buttonSelectionne: {
+    marginTop: 30,
+    marginBottom: 150,
+    marginHorizontal: 20,
     alignItems: "center",
     backgroundColor: "lightgreen",
     padding: 10
-  }
+  },
+  instructions: {
+    fontWeight: "bold",
+    fontSize: 16,
+    marginTop: 20,
+    marginBottom: 50,
+    marginHorizontal: 30
+  },
+  phraseTrou: {
+    marginTop: 7,
+    marginBottom: 10
+  },
+  dialogBonneReponse: {
+    color: "green"
+  },
+  dialogMauvaiseRéponse: {}
 });
