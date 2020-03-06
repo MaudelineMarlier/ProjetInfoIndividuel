@@ -98,7 +98,8 @@ export default class JouerJupiter extends Component {
           </TouchableOpacity>
         </View>
         <Button
-          title="Show Dialog"
+          title="Valider"
+          color="lightgrey"
           onPress={
             this.state.reponse == 1
               ? this.onPressBonneSolution
@@ -128,12 +129,12 @@ export default class JouerJupiter extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "center",
     paddingHorizontal: 10
   },
   button: {
+    marginTop: 300,
     alignItems: "center",
     backgroundColor: "lightblue",
     padding: 10
@@ -142,12 +143,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "lightgreen",
     padding: 10
-  },
-  countContainer: {
-    alignItems: "center",
-    padding: 10
-  },
-  countText: {
-    color: "#FF00FF"
   }
 });
