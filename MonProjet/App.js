@@ -127,16 +127,9 @@ function JouerJupiterScreen({ navigation }) {
             borderColor: "black",
             backgroundColor: "lightgrey"
           }}
-          //onSubmitEditing={text => text}
         ></TextInput>
         <Text style={{}}> dans le noir </Text>
       </View>
-      {/* <TouchableOpacity
-        style={{ backgroundColor: "blue" }}
-        onPress={() => (style = { backgroundColor: "yellow" })}
-      >
-        <Text>perdu</Text>
-      </TouchableOpacity> */}
       <JouerJupiter />
     </View>
   );
