@@ -13,7 +13,9 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 import HomePage from "./components/HomePage";
 import JupiterPage from "./components/JupiterPage";
-import JouerJupiter from "./components/JouerJupiter";
+import JouerJupiter1 from "./components/JouerJupiter1";
+import JouerJupiter2 from "./components/JouerJupiter2";
+
 // import { render } from "react-dom";
 // import "react-native-gesture-handler";
 // import "react-native-gesture-handler";
@@ -110,17 +112,34 @@ function JupiterScreen({ navigation }) {
       <TouchableOpacity onPress={() => navigation.navigate("Accueil")}>
         <Text>Retour à l'accueil</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter")}>
+      <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
         <Text>Jouer !</Text>
       </TouchableOpacity>
     </View>
   );
 }
 
-function JouerJupiterScreen({ navigation }) {
+function JouerJupiterScreen1({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
-      <JouerJupiter />
+      <JouerJupiter1 />
+      <Button
+        title="Passer à l'exercice suivant"
+        color="lightgrey"
+        onPress={() => navigation.navigate("JouerJupiter2")}
+      />
+    </View>
+  );
+}
+function JouerJupiterScreen2({ navigation }) {
+  return (
+    <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
+      <JouerJupiter2 />
+      <Button
+        title="Exercice fini, retour sur Jupiter"
+        color="lightgrey"
+        onPress={() => navigation.navigate("Jupiter")}
+      />
     </View>
   );
 }
@@ -212,10 +231,22 @@ function MyStack() {
         }}
       />
       <Stack.Screen
-        name="JouerJupiter"
-        component={JouerJupiterScreen}
+        name="JouerJupiter1"
+        component={JouerJupiterScreen1}
         options={{
           title: "C'est parti !",
+          headerStyle: {
+            backgroundColor: "#f4511e"
+          },
+          headerTintColor: "#fff",
+          headerTitleAlign: "center"
+        }}
+      />
+      <Stack.Screen
+        name="JouerJupiter2"
+        component={JouerJupiterScreen2}
+        options={{
+          title: "Tu y es presque !",
           headerStyle: {
             backgroundColor: "#f4511e"
           },

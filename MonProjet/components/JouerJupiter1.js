@@ -9,13 +9,14 @@ import {
   PropTypes,
   Alert
 } from "react-native";
-import Dialog, { DialogContent } from "react-native-popup-dialog";
+// import Dialog, { DialogContent } from "react-native-popup-dialog";
+import Dialog from "react-native-dialog";
 import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 
-export default class JouerJupiter extends Component {
+export default class JouerJupiter1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +24,8 @@ export default class JouerJupiter extends Component {
       press2: 0,
       press3: 0,
       reponse: 0,
-      visible1: 0,
-      visible2: 0
+      visible1: false,
+      visible2: false
     };
   }
 
@@ -62,6 +63,13 @@ export default class JouerJupiter extends Component {
       visible2: true
     });
   };
+  onPressFermerLaPopUp = () => {
+    this.setState({
+      visible1: false,
+      visible2: false
+    });
+  };
+
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
@@ -123,24 +131,27 @@ export default class JouerJupiter extends Component {
               : this.onPressMauvaiseSolution
           }
         />
-        <Dialog
-          visible={this.state.visible1}
-          onTouchOutside={() => {
-            this.setState({ visible1: false });
-          }}
-          style={styles.dialogBonneReponse}
-        >
-          <Text> Réponse bonne</Text>
-        </Dialog>
-        <Dialog
-          visible={this.state.visible2}
-          onTouchOutside={() => {
-            this.setState({ visible2: false });
-          }}
-          style={styles.dialogMauvaiseRéponse}
-        >
-          <Text> Mauvaise réponse... </Text>
-        </Dialog>
+        <View>
+          <Dialog.Container visible={this.state.visible1}>
+            <Dialog.Title>Bonne réponse ! </Dialog.Title>
+            <Dialog.Description>
+              Clique sur "Retour" pour passer à la phrase suivante{" "}
+            </Dialog.Description>
+            <Dialog.Button label="Retour" onPress={this.onPressFermerLaPopUp} />
+          </Dialog.Container>
+        </View>
+        <View>
+          <Dialog.Container visible={this.state.visible2}>
+            <Dialog.Title>Mauvaise réponse... </Dialog.Title>
+            <Dialog.Description>
+              Clique sur "Recommencer" pour réessayer{" "}
+            </Dialog.Description>
+            <Dialog.Button
+              label="Recommencer"
+              onPress={this.onPressFermerLaPopUp}
+            />
+          </Dialog.Container>
+        </View>
       </View>
     );
   }
@@ -178,9 +189,5 @@ const styles = StyleSheet.create({
   phraseTrou: {
     marginTop: 7,
     marginBottom: 10
-  },
-  dialogBonneReponse: {
-    color: "green"
-  },
-  dialogMauvaiseRéponse: {}
+  }
 });
