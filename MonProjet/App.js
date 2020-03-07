@@ -5,6 +5,7 @@ import {
   ImageBackground,
   View,
   Button,
+  Image,
   TouchableOpacity
 } from "react-native";
 import { Header } from "react-native-elements";
@@ -15,6 +16,10 @@ import HomePage from "./components/HomePage";
 import JupiterPage from "./components/JupiterPage";
 import JouerJupiter1 from "./components/JouerJupiter1";
 import JouerJupiter2 from "./components/JouerJupiter2";
+import Presentation from "./components/Presentation";
+import AcceilJupiter from "./components/AccueilJupiter";
+import Dialog from "react-native-dialog";
+import AccueilJupiter from "./components/AccueilJupiter";
 
 // import { render } from "react-dom";
 // import "react-native-gesture-handler";
@@ -23,6 +28,7 @@ import JouerJupiter2 from "./components/JouerJupiter2";
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
+      <Presentation />
       <View style={styles.lignePlanete}>
         <TouchableOpacity onPress={() => navigation.navigate("Jupiter")}>
           <ImageBackground
@@ -107,13 +113,23 @@ function HomeScreen({ navigation }) {
 
 function JupiterScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center" }}>
-      <Text>Bienvenu sur Jupiter</Text>
-      <TouchableOpacity onPress={() => navigation.navigate("Accueil")}>
-        <Text>Retour à l'accueil</Text>
-      </TouchableOpacity>
+    <View style={{ flex: 1, alignItems: "center", backgroundColor: "white" }}>
+      <AccueilJupiter />
       <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
-        <Text>Jouer !</Text>
+        <Text
+          style={{
+            backgroundColor: "#D142D4",
+            marginTop: 30,
+            fontSize: 20,
+            fontWeight: "bold",
+            borderWidth: 2,
+            borderColor: "#D142D4",
+            borderRadius: 8,
+            padding: 6
+          }}
+        >
+          {"  "}Commencer à jouer !{"  "}
+        </Text>
       </TouchableOpacity>
     </View>
   );
@@ -123,9 +139,13 @@ function JouerJupiterScreen1({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
       <JouerJupiter1 />
+      <Text>
+        {"\n"}
+        {"\n"}
+      </Text>
       <Button
-        title="Passer à l'exercice suivant"
-        color="lightgrey"
+        title="Passer à l'exercice suivant -->"
+        color="black"
         onPress={() => navigation.navigate("JouerJupiter2")}
       />
     </View>
@@ -135,9 +155,13 @@ function JouerJupiterScreen2({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
       <JouerJupiter2 />
+      <Text>
+        {"\n"}
+        {"\n"}
+      </Text>
       <Button
         title="Exercice fini, retour sur Jupiter"
-        color="lightgrey"
+        color="black"
         onPress={() => navigation.navigate("Jupiter")}
       />
     </View>
@@ -212,7 +236,7 @@ function MyStack() {
         options={{
           title: "Bienvenue dans notre système solaire !",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -224,7 +248,7 @@ function MyStack() {
         options={{
           title: "Jupiter vous accueille !",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -236,7 +260,7 @@ function MyStack() {
         options={{
           title: "C'est parti !",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -248,7 +272,7 @@ function MyStack() {
         options={{
           title: "Tu y es presque !",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -260,7 +284,7 @@ function MyStack() {
         options={{
           title: "Saturne vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -272,7 +296,7 @@ function MyStack() {
         options={{
           title: "La Terre vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -284,7 +308,7 @@ function MyStack() {
         options={{
           title: "Mars vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -296,7 +320,7 @@ function MyStack() {
         options={{
           title: "Le Soleil vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -308,7 +332,7 @@ function MyStack() {
         options={{
           title: "Mercure vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -320,7 +344,7 @@ function MyStack() {
         options={{
           title: "Neptune vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -332,7 +356,7 @@ function MyStack() {
         options={{
           title: "Uranus vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"
@@ -344,7 +368,7 @@ function MyStack() {
         options={{
           title: "Venus vous accueille",
           headerStyle: {
-            backgroundColor: "#f4511e"
+            backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center"

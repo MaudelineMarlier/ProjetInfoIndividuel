@@ -72,7 +72,7 @@ export default class JouerJupiter1 extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
+      <View style={{ alignItems: "center", flexDirection: "column" }}>
         <Text style={styles.instructions}>
           Remplis ces phrases pour aider Thomas à coloniser Jupiter ! {"\n"}
           {"\n"}
@@ -124,7 +124,7 @@ export default class JouerJupiter1 extends Component {
         </View>
         <Button
           title="Valider"
-          color="lightgrey"
+          color="#4DB844"
           onPress={
             this.state.reponse == 1
               ? this.onPressBonneSolution
@@ -135,7 +135,7 @@ export default class JouerJupiter1 extends Component {
           <Dialog.Container visible={this.state.visible1}>
             <Dialog.Title>Bonne réponse ! </Dialog.Title>
             <Dialog.Description>
-              Clique sur "Retour" pour passer à la phrase suivante{" "}
+              Clique sur "Retour" puis passe à la phrase suivante{" "}
             </Dialog.Description>
             <Dialog.Button label="Retour" onPress={this.onPressFermerLaPopUp} />
           </Dialog.Container>
@@ -165,19 +165,25 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 30,
-    marginBottom: 150,
-    marginHorizontal: 20,
+    marginBottom: 50,
+    marginHorizontal: 12,
     alignItems: "center",
-    backgroundColor: "lightblue",
-    padding: 10
+    backgroundColor: "#AEAEAE",
+    borderWidth: 2,
+    borderColor: "#AEAEAE",
+    borderRadius: 8,
+    padding: 7
   },
   buttonSelectionne: {
     marginTop: 30,
-    marginBottom: 150,
-    marginHorizontal: 20,
+    marginBottom: 50,
+    marginHorizontal: 12,
     alignItems: "center",
-    backgroundColor: "lightgreen",
-    padding: 10
+    backgroundColor: "#9E1EA1",
+    borderWidth: 2,
+    borderColor: "#9E1EA1",
+    borderRadius: 8,
+    padding: 7
   },
   instructions: {
     fontWeight: "bold",
