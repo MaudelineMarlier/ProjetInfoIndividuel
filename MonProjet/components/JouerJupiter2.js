@@ -15,6 +15,7 @@ import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
+import * as Progress from "react-native-progress";
 
 export default class JouerJupiter1 extends Component {
   constructor(props) {
@@ -78,6 +79,8 @@ export default class JouerJupiter1 extends Component {
           {"\n"}
           Clique sur le mot que tu penses être le bon puis valide ta réponse
         </Text>
+        <Progress.Bar progress={1} width={200} />
+
         <View
           style={{
             flexDirection: "row",
