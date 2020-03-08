@@ -22,7 +22,7 @@ export default class AccueilJupiter extends Component {
     return (
       <View style={{ alignItems: "center", backgroundColor: "white" }}>
         <Text style={{ fontSize: 20, marginTop: 20 }}>
-          Bienvenu sur Jupiter
+          Bienvenue sur Jupiter
         </Text>
         <Image
           source={require("./Images/jupiter1.jpg")}

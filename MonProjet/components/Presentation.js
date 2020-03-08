@@ -33,7 +33,7 @@ export default class Presentation extends Component {
     return (
       <View>
         <Dialog.Container visible={this.state.visible}>
-          <Dialog.Title>Bienvenu dans notre système solaire </Dialog.Title>
+          <Dialog.Title>Bienvenue dans notre système solaire </Dialog.Title>
           <Dialog.Description>
             Tu es ici dans l'unique objectif d'aider Thomas à coloniser toutes
             les planètes du système solaire. {"\n"}Sauras-tu l'aider dans cette
@@ -52,32 +52,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     paddingHorizontal: 10
-  },
-  button: {
-    marginTop: 30,
-    marginBottom: 150,
-    marginHorizontal: 20,
-    alignItems: "center",
-    backgroundColor: "lightblue",
-    padding: 10
-  },
-  buttonSelectionne: {
-    marginTop: 30,
-    marginBottom: 150,
-    marginHorizontal: 20,
-    alignItems: "center",
-    backgroundColor: "lightgreen",
-    padding: 10
-  },
-  instructions: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginTop: 20,
-    marginBottom: 50,
-    marginHorizontal: 30
-  },
-  phraseTrou: {
-    marginTop: 7,
-    marginBottom: 10
   }
 });
