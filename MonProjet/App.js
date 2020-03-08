@@ -6,7 +6,8 @@ import {
   View,
   Button,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from "react-native";
 import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
@@ -20,6 +21,7 @@ import Presentation from "./components/Presentation";
 import AcceilJupiter from "./components/AccueilJupiter";
 import Dialog from "react-native-dialog";
 import AccueilJupiter from "./components/AccueilJupiter";
+import { ScreenStackHeaderLeftView } from "react-native-screens";
 
 // import { render } from "react-dom";
 // import "react-native-gesture-handler";
@@ -234,7 +236,7 @@ function MyStack() {
         name="Accueil"
         component={HomeScreen}
         options={{
-          title: "Bienvenue dans notre système solaire !",
+          title: "Bienvenue !",
           headerStyle: {
             backgroundColor: "#9E1EA1"
           },
