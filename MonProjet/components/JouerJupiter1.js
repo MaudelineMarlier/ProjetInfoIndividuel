@@ -16,6 +16,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 import * as Progress from "react-native-progress";
+import App from "../App";
 
 export default class JouerJupiter1 extends Component {
   constructor(props) {
@@ -154,6 +155,7 @@ export default class JouerJupiter1 extends Component {
             />
           </Dialog.Container>
         </View>
+        {/* <App reponse={this.state.reponse} /> */}
       </View>
     );
   }

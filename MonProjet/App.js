@@ -145,6 +145,7 @@ function JouerJupiterScreen1({ navigation }) {
         {"\n"}
         {"\n"}
       </Text>
+      {/* <JouerJupiter1 help={this.state.reponse} /> */}
       <Button
         title="Passer à l'exercice suivant -->"
         color="black"
@@ -161,6 +162,7 @@ function JouerJupiterScreen2({ navigation }) {
         {"\n"}
         {"\n"}
       </Text>
+
       <Button
         title="Exercice fini, retour sur Jupiter"
         color="black"
@@ -380,12 +382,20 @@ function MyStack() {
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
-  );
+export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      help: 0
+    };
+  }
+  render() {
+    return (
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
