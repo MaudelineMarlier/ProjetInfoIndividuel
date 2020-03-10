@@ -155,7 +155,6 @@ export default class JouerJupiter1 extends Component {
             />
           </Dialog.Container>
         </View>
-        {/* <App reponse={this.state.reponse} /> */}
       </View>
     );
   }

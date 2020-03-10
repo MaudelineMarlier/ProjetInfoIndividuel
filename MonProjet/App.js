@@ -136,8 +136,12 @@ function JupiterScreen({ navigation }) {
     </View>
   );
 }
+var help = 0;
+// const Help = help => {
+//   return <JouerJupiter1 onPress {() => JouerJupiterScreen1.On/>;
+// };
 
-function JouerJupiterScreen1({ navigation }) {
+function JouerJupiterScreen1({ navigation, help }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
       <JouerJupiter1 />
@@ -145,15 +149,40 @@ function JouerJupiterScreen1({ navigation }) {
         {"\n"}
         {"\n"}
       </Text>
-      {/* <JouerJupiter1 help={this.state.reponse} /> */}
       <Button
-        title="Passer à l'exercice suivant -->"
+        title="Passer à l'exerce suivant"
+        // disabled={help == 1 ? false : true}
         color="black"
         onPress={() => navigation.navigate("JouerJupiter2")}
       />
     </View>
   );
 }
+
+// class JouerJupiterScreen extends Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       reponse: 0
+//     };
+//   }
+//   validerReponse = () => {
+//     this.setState({ reponse: this.setState.reponse + 1 });
+//   };
+//   onPress;
+//   render() {
+//     return (
+//       <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
+//         <JouerJupiter1 onPress={this.validerReponse} />
+//         <Text>
+//           {"\n"}
+//           {"\n"}
+//           {this.state.reponse}
+//         </Text>
+//       </View>
+//     );
+//   }
+// }
 function JouerJupiterScreen2({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
@@ -162,7 +191,6 @@ function JouerJupiterScreen2({ navigation }) {
         {"\n"}
         {"\n"}
       </Text>
-
       <Button
         title="Exercice fini, retour sur Jupiter"
         color="black"
@@ -383,12 +411,6 @@ function MyStack() {
 }
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      help: 0
-    };
-  }
   render() {
     return (
       <NavigationContainer>
