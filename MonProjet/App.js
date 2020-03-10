@@ -141,11 +141,9 @@ function JouerJupiterScreen1({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
       <JouerJupiter1 />
-      <Text>
-        {"\n"}
-        {"\n"}
-      </Text>
+      <Text>{"\n"}</Text>
       <Button
+        //if {JouerJupiter1.state.reponse == 1}
         title="Passer à l'exercice suivant -->"
         color="black"
         onPress={() => navigation.navigate("JouerJupiter2")}
@@ -380,12 +378,14 @@ function MyStack() {
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <NavigationContainer>
+        <MyStack />
+      </NavigationContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
