@@ -5,27 +5,29 @@ import {
   ImageBackground,
   View,
   Button,
-  TouchableOpacity
+  Image,
+  TouchableOpacity,
+  PropTypes,
+  Alert
 } from "react-native";
+// import Dialog, { DialogContent } from "react-native-popup-dialog";
+import Dialog from "react-native-dialog";
 import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TextInput } from "react-native-gesture-handler";
+import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 
-export default class HomePage extends React.Component {
+export default class HomePage extends Component {
   render() {
+    const { navigation } = this.props;
     return (
-      <View style={styles.container}>
+      <View style={{ alignItems: "center", backgroundColor: "white" }}>
         <View style={styles.lignePlanete}>
           <TouchableOpacity onPress={() => navigation.navigate("Jupiter")}>
             <ImageBackground
               source={require("./Images/jupiter1.jpg")}
               style={{ width: 110, height: 110, marginTop: 60 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Saturne")}>
             <ImageBackground
@@ -41,11 +43,7 @@ export default class HomePage extends React.Component {
             <ImageBackground
               source={require("./Images/terre1.jpg")}
               style={{ width: 110, height: 110, marginTop: 60 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
         </View>
         <View style={styles.lignePlanete}>
@@ -53,31 +51,19 @@ export default class HomePage extends React.Component {
             <ImageBackground
               source={require("./Images/mars1.jpg")}
               style={{ width: 110, height: 110 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Soleil")}>
             <ImageBackground
               source={require("./Images/soleil1.jpg")}
               style={{ width: 140, height: 140, marginLeft: 10 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate("Mercure")}>
+          <TouchableOpacity onPress={() => navigation.navigate("Terre")}>
             <ImageBackground
               source={require("./Images/mercure1.jpg")}
               style={{ width: 110, height: 110 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
         </View>
         <View style={styles.lignePlanete}>
@@ -85,31 +71,19 @@ export default class HomePage extends React.Component {
             <ImageBackground
               source={require("./Images/neptune1.jpg")}
               style={{ width: 110, height: 110, marginBottom: 30 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Uranus")}>
             <ImageBackground
               source={require("./Images/uranus1.jpg")}
               style={{ width: 100, height: 113, marginTop: 40 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Venus")}>
             <ImageBackground
               source={require("./Images/venus1.jpg")}
               style={{ width: 110, height: 110, marginBottom: 30 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
         </View>
       </View>
@@ -119,9 +93,9 @@ export default class HomePage extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "blue",
-    alignItems: "center"
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingHorizontal: 10
   },
   lignePlanete: {
     alignItems: "center",

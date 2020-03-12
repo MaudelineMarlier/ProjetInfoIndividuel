@@ -27,7 +27,8 @@ export default class JouerJupiter1 extends Component {
       press3: 0,
       reponse: 0,
       visible1: false,
-      visible2: false
+      visible2: false,
+      visibleBoutonSuivant: true
     };
   }
 
@@ -57,7 +58,8 @@ export default class JouerJupiter1 extends Component {
   };
   onPressBonneSolution = () => {
     this.setState({
-      visible1: true
+      visible1: true,
+      visibleBoutonSuivant: false
     });
   };
   onPressMauvaiseSolution = () => {
@@ -73,6 +75,8 @@ export default class JouerJupiter1 extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
+
     return (
       <View style={{ alignItems: "center", flexDirection: "column" }}>
         <Text style={styles.instructions}>
@@ -138,7 +142,7 @@ export default class JouerJupiter1 extends Component {
           <Dialog.Container visible={this.state.visible1}>
             <Dialog.Title>Bonne réponse ! </Dialog.Title>
             <Dialog.Description>
-              Clique sur "Retour" puis passe à la phrase suivante{" "}
+              Clique sur "Retour" pour pouvoir passer à la phrase suivante{" "}
             </Dialog.Description>
             <Dialog.Button label="Retour" onPress={this.onPressFermerLaPopUp} />
           </Dialog.Container>
@@ -155,6 +159,16 @@ export default class JouerJupiter1 extends Component {
             />
           </Dialog.Container>
         </View>
+        <Text>
+          {"\n"}
+          {"\n"}
+        </Text>
+        <Button
+          title="Passer à l'exerce suivant"
+          disabled={this.state.visibleBoutonSuivant}
+          color="black"
+          onPress={() => navigation.navigate("JouerJupiter2")}
+        />
       </View>
     );
   }

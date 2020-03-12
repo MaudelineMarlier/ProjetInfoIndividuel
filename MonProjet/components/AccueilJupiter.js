@@ -19,6 +19,7 @@ import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 
 export default class AccueilJupiter extends Component {
   render() {
+    const { navigation } = this.props;
     return (
       <View style={{ alignItems: "center", backgroundColor: "white" }}>
         <Text style={{ fontSize: 20, marginTop: 20 }}>
@@ -43,6 +44,22 @@ export default class AccueilJupiter extends Component {
           {"\n"}
           Sauras-tu retrouver les mots manquants ?
         </Text>
+        <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
+          <Text
+            style={{
+              backgroundColor: "#D142D4",
+              marginTop: 30,
+              fontSize: 20,
+              fontWeight: "bold",
+              borderWidth: 2,
+              borderColor: "#D142D4",
+              borderRadius: 8,
+              padding: 6
+            }}
+          >
+            {"  "}Commencer à jouer !{"  "}
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }
