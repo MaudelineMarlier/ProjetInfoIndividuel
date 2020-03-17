@@ -143,10 +143,7 @@ export default class JouerJupiter1 extends Component {
             <Dialog.Description>
               Clique sur "Retour sur Jupiter" pour retourner au menu{" "}
             </Dialog.Description>
-            <Dialog.Button
-              label="Retour sur Jupiter"
-              onPress={this.onPressFermerLaPopUp}
-            />
+            <Dialog.Button label="Retour" onPress={this.onPressFermerLaPopUp} />
           </Dialog.Container>
         </View>
         <View>
@@ -161,11 +158,15 @@ export default class JouerJupiter1 extends Component {
             />
           </Dialog.Container>
         </View>
+        <Text>
+          {"\n"}
+          {"\n"}
+        </Text>
         <Button
-          title="Revenir sur Jupiter"
+          title="Revenir au Système Solaire"
           disabled={this.state.visibleBoutonSuivant}
           color="black"
-          onPress={() => navigation.navigate("Jupiter")}
+          onPress={() => navigation.navigate("Accueil")}
         />
       </View>
     );

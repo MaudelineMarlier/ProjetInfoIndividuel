@@ -8,57 +8,66 @@ import {
   Image,
   TouchableOpacity,
   PropTypes,
-  Alert
+  Alert,
+  TextInput
 } from "react-native";
 // import Dialog, { DialogContent } from "react-native-popup-dialog";
 import Dialog from "react-native-dialog";
 import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
-export default class AccueilJupiter extends Component {
+export default class Soleil extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nom: "Dupont",
+      prenom: "Julien",
+      niveau: "CP"
+    };
+    //this.handleChangeText = this.handleChangeText.blind(this);
+  }
+  handleNom = text => {
+    this.setState({ nom: text });
+  };
+  handlePrenom = text => {
+    this.setState({ prenom: text });
+  };
+  login = (nom, prenom) => {
+    alert("à changer");
+  };
+
   render() {
     const { navigation } = this.props;
     return (
-      <View style={{ alignItems: "center", backgroundColor: "white" }}>
-        <Text style={{ fontSize: 24, marginTop: 20, fontWeight: "bold" }}>
-          Phrases à trou
-        </Text>
-        <Image
-          source={require("./Images/jupiter1.jpg")}
-          style={{ width: 200, height: 200, marginTop: 30 }}
-        />
+      <View
+        style={{
+          flex: 1,
+          marginLeft: 30,
+          backgroundColor: "white",
+          flexDirection: "column"
+        }}
+      >
         <Text
           style={{
-            fontSize: 16,
+            fontSize: 24,
             marginTop: 20,
-            marginRight: 15,
-            marginLeft: 25,
-            alignContent: "center"
+            marginBottom: 20,
+            fontWeight: "bold",
+            textAlign: "center"
           }}
         >
-          En atterissant sur cette planète, toutes vos affaires se sont
-          renversées et malheureusement du café a coulé sur vos fiches de
-          travail. {"\n"}
-          {"\n"}
-          Sauras-tu retrouver les mots manquants ?
+          Ton profil
         </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
-          <Text
-            style={{
-              backgroundColor: "#D142D4",
-              marginTop: 30,
-              fontSize: 20,
-              fontWeight: "bold",
-              borderWidth: 2,
-              borderColor: "#D142D4",
-              borderRadius: 8,
-              padding: 6
-            }}
-          >
-            {"  "}Commencer à jouer !{"  "}
-          </Text>
+        <Text> Nom : {this.state.nom} </Text>
+        <Text> Prénom : {this.state.prenom} </Text>
+        <Text> Niveau d'étude : {this.state.niveau} </Text>
+        <TouchableOpacity
+          style={styles.submitButton}
+          onPress={() => this.login(this.state.nom, this.state.prenom)}
+        >
+          <Text> Modifier </Text>
         </TouchableOpacity>
       </View>
     );

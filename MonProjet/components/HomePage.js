@@ -33,11 +33,7 @@ export default class HomePage extends Component {
             <ImageBackground
               source={require("./Images/saturne1.jpg")}
               style={{ width: 120, height: 100, marginBottom: 30 }}
-            >
-              <Text style={{ color: "white", textAlign: "center" }}>
-                {"\n"}
-              </Text>
-            </ImageBackground>
+            ></ImageBackground>
           </TouchableOpacity>
           <TouchableOpacity onPress={() => navigation.navigate("Terre")}>
             <ImageBackground

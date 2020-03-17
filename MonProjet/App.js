@@ -21,6 +21,7 @@ import Presentation from "./components/Presentation";
 import AcceilJupiter from "./components/AccueilJupiter";
 import Dialog from "react-native-dialog";
 import AccueilJupiter from "./components/AccueilJupiter";
+import Soleil from "./components/ProfilPage";
 import { ScreenStackHeaderLeftView } from "react-native-screens";
 
 // import { render } from "react-dom";
@@ -56,10 +57,6 @@ function JouerJupiterScreen2({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
       <JouerJupiter2 navigation={navigation} />
-      <Text>
-        {"\n"}
-        {"\n"}
-      </Text>
     </View>
   );
 }
@@ -87,8 +84,8 @@ function MarsScreen({ navigation }) {
 }
 function SoleilScreen({ navigation }) {
   return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Button title="On ne peut pas encore jouer" />
+    <View>
+      <Soleil navigation={navigation} />
     </View>
   );
 }
@@ -123,12 +120,6 @@ function VenusScreen({ navigation }) {
 
 const Stack = createStackNavigator();
 
-function headerRight () {
-  return}
-  <TouchableOpacity onPress={() => alert("This is a button!")}>
-    <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
-  </TouchableOpacity>
-)
 function MyStack() {
   return (
     <Stack.Navigator>
@@ -141,21 +132,32 @@ function MyStack() {
             backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() =>
+                alert("Clique sur une des planètes pour commencer un jeu")
+              }
+            >
+              <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
+            </TouchableOpacity>
+          )
         }}
       />
       <Stack.Screen
         name="Jupiter"
         component={JupiterScreen}
         options={{
-          title: "Jupiter vous accueille !",
+          title: "Bienvenue sur Jupiter",
           headerStyle: {
             backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           headerRight: () => (
-            <TouchableOpacity onPress={() => alert("This is a button!")}>
+            <TouchableOpacity
+              onPress={() => alert("Clique sur commencer à jouer")}
+            >
               <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
             </TouchableOpacity>
           )
@@ -170,7 +172,18 @@ function MyStack() {
             backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
+          headerRight: () => (
+            <TouchableOpacity
+              onPress={() =>
+                alert(
+                  "Clique sur le mot que tu penses bien orthographié puis valides ta réponse"
+                )
+              }
+            >
+              <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
+            </TouchableOpacity>
+          )
         }}
       />
       <Stack.Screen
