@@ -28,7 +28,24 @@ export default class JouerJupiter1 extends Component {
       reponse: 0,
       visible1: false,
       visible2: false,
-      visibleBoutonSuivant: true
+      visibleBoutonSuivant: true,
+      numeroPhrase: 0,
+      phrases: [
+        "Le petit Leo se trouve ____ dans le noir",
+        "Julie ____ son chat sous son lit "
+      ],
+      reponses: [
+        [
+          ["perdu", 1],
+          ["perdue", 0],
+          ["perdus", 0]
+        ],
+        [
+          ["cherchait", 1],
+          ["chercher", 0],
+          ["cherchaient", 0]
+        ]
+      ]
     };
   }
 
@@ -59,7 +76,9 @@ export default class JouerJupiter1 extends Component {
   onPressBonneSolution = () => {
     this.setState({
       visible1: true,
-      visibleBoutonSuivant: false
+      visibleBoutonSuivant: false,
+      numeroPhrase: 1,
+      press1: 0
     });
   };
   onPressMauvaiseSolution = () => {
@@ -76,8 +95,29 @@ export default class JouerJupiter1 extends Component {
 
   render() {
     const { navigation } = this.props;
-
-    return (
+    var bonneReponse = 10;
+    var mauvaiseReponse1 = 20;
+    var mauvaiseReponse2 = 30;
+    for (let i = 0; i < this.state.phrases.length; i++) {
+      if (this.state.reponses[this.state.numeroPhrase][i][1] == 1) {
+        if (i == 0) {
+          bonneReponse = 0;
+          mauvaiseReponse1 = 1;
+          mauvaiseReponse2 = 2;
+        }
+        if (i == 1) {
+          bonneReponse = 1;
+          mauvaiseReponse1 = 0;
+          mauvaiseReponse2 = 2;
+        }
+        if (i == 2) {
+          bonneReponse = 2;
+          mauvaiseReponse1 = 1;
+          mauvaiseReponse2 = 0;
+        }
+      }
+    }
+    var retour = (
       <View style={{ alignItems: "center", flexDirection: "column" }}>
         <Text style={styles.instructions}>
           Remplis ces phrases pour aider Thomas à coloniser Jupiter ! {"\n"}
@@ -94,7 +134,9 @@ export default class JouerJupiter1 extends Component {
           }}
         >
           <Text style={styles.phraseTrou}>
-            {"       "}Le petit Leo se trouve ____ dans le noir {"       "}
+            {"       " +
+              this.state.phrases[this.state.numeroPhrase] +
+              "       "}
           </Text>
         </View>
         <View style={styles.container}>
@@ -106,7 +148,12 @@ export default class JouerJupiter1 extends Component {
             }
             onPress={this.onPress1}
           >
-            <Text> perdu </Text>
+            <Text>
+              {" "}
+              {
+                this.state.reponses[this.state.numeroPhrase][bonneReponse][0]
+              }{" "}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={
@@ -116,7 +163,14 @@ export default class JouerJupiter1 extends Component {
             }
             onPress={this.onPress2}
           >
-            <Text> perdus </Text>
+            <Text>
+              {" "}
+              {
+                this.state.reponses[this.state.numeroPhrase][
+                  mauvaiseReponse1
+                ][0]
+              }{" "}
+            </Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={
@@ -126,7 +180,14 @@ export default class JouerJupiter1 extends Component {
             }
             onPress={this.onPress3}
           >
-            <Text> perdue </Text>
+            <Text>
+              {" "}
+              {
+                this.state.reponses[this.state.numeroPhrase][
+                  mauvaiseReponse2
+                ][0]
+              }{" "}
+            </Text>
           </TouchableOpacity>
         </View>
         <Button
@@ -163,14 +224,15 @@ export default class JouerJupiter1 extends Component {
           {"\n"}
           {"\n"}
         </Text>
-        <Button
+        {/* <Button
           title="Passer à l'exerce suivant"
           disabled={this.state.visibleBoutonSuivant}
           color="black"
           onPress={() => navigation.navigate("JouerJupiter2")}
-        />
+        /> */}
       </View>
     );
+    return <View>{retour}</View>;
   }
 }
 
