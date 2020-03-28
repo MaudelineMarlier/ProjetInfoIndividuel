@@ -24,23 +24,19 @@ export default class Soleil extends Component {
     this.state = {
       nom: "Dupont",
       prenom: "Julien",
-      niveau: "CP"
+      niveau: "CP",
+      visible: false
     };
     //this.handleChangeText = this.handleChangeText.blind(this);
   }
-  handleNom = text => {
-    this.setState({ nom: text });
-  };
-  handlePrenom = text => {
-    this.setState({ prenom: text });
-  };
-  login = (nom, prenom) => {
-    alert("à changer");
+  onPressVisible = () => {
+    //this.setState({ visible: true });
   };
 
   render() {
     const { navigation } = this.props;
-    return (
+    var visible = false;
+    var retour = (
       <View
         style={{
           flex: 1,
@@ -49,6 +45,7 @@ export default class Soleil extends Component {
           flexDirection: "column"
         }}
       >
+        <Button title="Valider" color="#4DB844" onPress={(visible = true)} />
         <Text
           style={{
             fontSize: 24,
@@ -63,14 +60,27 @@ export default class Soleil extends Component {
         <Text> Nom : {this.state.nom} </Text>
         <Text> Prénom : {this.state.prenom} </Text>
         <Text> Niveau d'étude : {this.state.niveau} </Text>
-        <TouchableOpacity
-          style={styles.submitButton}
-          onPress={() => this.login(this.state.nom, this.state.prenom)}
-        >
-          <Text> Modifier </Text>
-        </TouchableOpacity>
+
+        <Dialog.Container visible={visible}>
+          <Dialog.Title>BRAVO ! </Dialog.Title>
+          {/* <Dialog.Button label="X" onPress={this.onPressFermerLaPopUp} /> */}
+          <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
+          <Dialog.Button
+            label="Go Jupiter"
+            onPress={() => navigation.navigate("Jupiter")}
+          />
+          <Dialog.Button
+            label="Home"
+            onPress={() => navigation.navigate("Accueil")}
+          />
+          <Dialog.Button
+            label="Planète suivante"
+            onPress={() => navigation.navigate("Saturne")}
+          />
+        </Dialog.Container>
       </View>
     );
+    return <View>{retour}</View>;
   }
 }
 

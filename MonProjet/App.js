@@ -53,14 +53,6 @@ function JouerJupiterScreen1({ navigation }) {
   );
 }
 
-function JouerJupiterScreen2({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", flexDirection: "column" }}>
-      <JouerJupiter2 navigation={navigation} />
-    </View>
-  );
-}
-
 function SaturneScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -184,18 +176,6 @@ function MyStack() {
               <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
             </TouchableOpacity>
           )
-        }}
-      />
-      <Stack.Screen
-        name="JouerJupiter2"
-        component={JouerJupiterScreen2}
-        options={{
-          title: "Tu y es presque !",
-          headerStyle: {
-            backgroundColor: "#9E1EA1"
-          },
-          headerTintColor: "#fff",
-          headerTitleAlign: "center"
         }}
       />
       <Stack.Screen

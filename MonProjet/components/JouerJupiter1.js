@@ -28,11 +28,17 @@ export default class JouerJupiter1 extends Component {
       reponse: 0,
       visible1: false,
       visible2: false,
+      visible3: false,
       visibleBoutonSuivant: true,
       numeroPhrase: 0,
+      valider: 0,
+      progression: 0.33,
+      navigate: this.props,
+      help: Math.floor(Math.random() * 2),
       phrases: [
         "Le petit Leo se trouve ____ dans le noir",
-        "Julie ____ son chat sous son lit "
+        "Julie ____ son chat sous son lit ",
+        "Pendant le confinement, il ____ travailler"
       ],
       reponses: [
         [
@@ -44,6 +50,11 @@ export default class JouerJupiter1 extends Component {
           ["cherchait", 1],
           ["chercher", 0],
           ["cherchaient", 0]
+        ],
+        [
+          ["faut", 1],
+          ["faux", 0],
+          ["feau", 0]
         ]
       ]
     };
@@ -75,11 +86,22 @@ export default class JouerJupiter1 extends Component {
   };
   onPressBonneSolution = () => {
     this.setState({
-      visible1: true,
-      visibleBoutonSuivant: false,
-      numeroPhrase: 1,
-      press1: 0
+      //visible1: true,
+      // visibleBoutonSuivant: false,
+      progression: this.state.progression + 0.34,
+      press1: 0,
+      valider: this.state.valider + 1
+      //numeroPhrase: this.state.numeroPhrase + 1
+      //reponse: 1
     });
+    if (this.state.numeroPhrase < 2)
+      this.setState({
+        numeroPhrase: this.state.numeroPhrase + 1,
+        help: Math.floor(Math.random() * 2)
+      });
+    if (this.state.valider == 2) {
+      this.setState({ visible1: true });
+    }
   };
   onPressMauvaiseSolution = () => {
     this.setState({
@@ -89,42 +111,149 @@ export default class JouerJupiter1 extends Component {
   onPressFermerLaPopUp = () => {
     this.setState({
       visible1: false,
-      visible2: false
+      visible2: false,
+      visible3: false
+    });
+    if (this.state.valider == 3) {
+      this.setState({
+        visibleBoutonSuivant: false
+      });
+    }
+  };
+
+  onPressAbandon = () => {
+    this.setState({
+      visible3: true
     });
   };
 
   render() {
     const { navigation } = this.props;
-    var bonneReponse = 10;
-    var mauvaiseReponse1 = 20;
-    var mauvaiseReponse2 = 30;
-    for (let i = 0; i < this.state.phrases.length; i++) {
-      if (this.state.reponses[this.state.numeroPhrase][i][1] == 1) {
-        if (i == 0) {
-          bonneReponse = 0;
-          mauvaiseReponse1 = 1;
-          mauvaiseReponse2 = 2;
-        }
-        if (i == 1) {
-          bonneReponse = 1;
-          mauvaiseReponse1 = 0;
-          mauvaiseReponse2 = 2;
-        }
-        if (i == 2) {
-          bonneReponse = 2;
-          mauvaiseReponse1 = 1;
-          mauvaiseReponse2 = 0;
-        }
-      }
+    var boutons = [];
+    if (this.state.help == 0) {
+      boutons.push(
+        <TouchableOpacity
+          style={
+            this.state.press1 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress1}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][0][0]}</Text>
+        </TouchableOpacity>,
+        <TouchableOpacity
+          style={
+            this.state.press2 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress2}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][1][0]}</Text>
+        </TouchableOpacity>,
+        <TouchableOpacity
+          style={
+            this.state.press3 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress3}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][2][0]}</Text>
+        </TouchableOpacity>
+      );
     }
+
+    if (this.state.help == 1) {
+      boutons.push(
+        <TouchableOpacity
+          style={
+            this.state.press2 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress2}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][1][0]}</Text>
+        </TouchableOpacity>,
+        <TouchableOpacity
+          style={
+            this.state.press3 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress3}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][2][0]}</Text>
+        </TouchableOpacity>,
+        <TouchableOpacity
+          style={
+            this.state.press1 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress1}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][0][0]}</Text>
+        </TouchableOpacity>
+      );
+    }
+
+    if (this.state.help == 2) {
+      boutons.push(
+        <TouchableOpacity
+          style={
+            this.state.press3 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress3}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][2][0]}</Text>
+        </TouchableOpacity>,
+        <TouchableOpacity
+          style={
+            this.state.press2 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress2}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][1][0]}</Text>
+        </TouchableOpacity>,
+        <TouchableOpacity
+          style={
+            this.state.press1 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress1}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][0][0]}</Text>
+        </TouchableOpacity>
+      );
+    }
+
     var retour = (
       <View style={{ alignItems: "center", flexDirection: "column" }}>
         <Text style={styles.instructions}>
           Remplis ces phrases pour aider Thomas à coloniser Jupiter ! {"\n"}
           {"\n"}
           Clique sur le mot que tu penses être le bon puis valide ta réponse
+          {"\n"}__________________________________________
+          {/* {this.state.numeroPhrase} */}
         </Text>
-        <Progress.Bar progress={0.5} width={200} />
+        <Progress.Bar
+          style={{ color: "green" }}
+          progress={this.state.progression}
+          width={200}
+        />
+        <Text>
+          {"\n"}
+          {"\n"}
+          {"\n"}
+        </Text>
         <View
           style={{
             flexDirection: "row",
@@ -139,57 +268,7 @@ export default class JouerJupiter1 extends Component {
               "       "}
           </Text>
         </View>
-        <View style={styles.container}>
-          <TouchableOpacity
-            style={
-              this.state.press1 % 2 == 0
-                ? styles.button
-                : styles.buttonSelectionne
-            }
-            onPress={this.onPress1}
-          >
-            <Text>
-              {" "}
-              {
-                this.state.reponses[this.state.numeroPhrase][bonneReponse][0]
-              }{" "}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={
-              this.state.press2 % 2 == 0
-                ? styles.button
-                : styles.buttonSelectionne
-            }
-            onPress={this.onPress2}
-          >
-            <Text>
-              {" "}
-              {
-                this.state.reponses[this.state.numeroPhrase][
-                  mauvaiseReponse1
-                ][0]
-              }{" "}
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={
-              this.state.press3 % 2 == 0
-                ? styles.button
-                : styles.buttonSelectionne
-            }
-            onPress={this.onPress3}
-          >
-            <Text>
-              {" "}
-              {
-                this.state.reponses[this.state.numeroPhrase][
-                  mauvaiseReponse2
-                ][0]
-              }{" "}
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <View style={styles.container}>{boutons}</View>
         <Button
           title="Valider"
           color="#4DB844"
@@ -201,11 +280,21 @@ export default class JouerJupiter1 extends Component {
         />
         <View>
           <Dialog.Container visible={this.state.visible1}>
-            <Dialog.Title>Bonne réponse ! </Dialog.Title>
-            <Dialog.Description>
-              Clique sur "Retour" pour pouvoir passer à la phrase suivante{" "}
-            </Dialog.Description>
-            <Dialog.Button label="Retour" onPress={this.onPressFermerLaPopUp} />
+            <Dialog.Title>BRAVO ! </Dialog.Title>
+            {/* <Dialog.Button label="X" onPress={this.onPressFermerLaPopUp} /> */}
+            <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
+            <Dialog.Button
+              label="Go Jupiter"
+              onPress={() => navigation.navigate("Jupiter")}
+            />
+            <Dialog.Button
+              label="Home"
+              onPress={() => navigation.navigate("Accueil")}
+            />
+            <Dialog.Button
+              label="Planète suivante"
+              onPress={() => navigation.navigate("Saturne")}
+            />
           </Dialog.Container>
         </View>
         <View>
@@ -224,12 +313,26 @@ export default class JouerJupiter1 extends Component {
           {"\n"}
           {"\n"}
         </Text>
-        {/* <Button
-          title="Passer à l'exerce suivant"
-          disabled={this.state.visibleBoutonSuivant}
+        <Button
+          title="Abandonner"
+          //disabled={this.state.visibleBoutonSuivant}
           color="black"
-          onPress={() => navigation.navigate("JouerJupiter2")}
-        /> */}
+          onPress={this.onPressAbandon}
+        />
+        <Dialog.Container visible={this.state.visible3}>
+          <Dialog.Title>Es-tu sûr de vouloir abandonner ?</Dialog.Title>
+          <Dialog.Description>
+            {/* Es-tu sur de vouloir abandonner ? */}
+          </Dialog.Description>
+          <Dialog.Button
+            label="Oui           "
+            onPress={() => navigation.navigate("Jupiter")}
+          />
+          <Dialog.Button
+            label="Non                         "
+            onPress={this.onPressFermerLaPopUp}
+          />
+        </Dialog.Container>
       </View>
     );
     return <View>{retour}</View>;
@@ -268,7 +371,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 16,
     marginTop: 20,
-    marginBottom: 50,
+    marginBottom: 30,
     marginHorizontal: 30
   },
   phraseTrou: {
