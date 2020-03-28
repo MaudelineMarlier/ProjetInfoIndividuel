@@ -35,7 +35,7 @@ export default class Soleil extends Component {
 
   render() {
     const { navigation } = this.props;
-    var visible = false;
+    var visible1 = false;
     var retour = (
       <View
         style={{
@@ -45,7 +45,7 @@ export default class Soleil extends Component {
           flexDirection: "column"
         }}
       >
-        <Button title="Valider" color="#4DB844" onPress={(visible = true)} />
+        <Button title="Valider" color="#4DB844" onPress={(visible1 = true)} />
         <Text
           style={{
             fontSize: 24,
@@ -59,9 +59,9 @@ export default class Soleil extends Component {
         </Text>
         <Text> Nom : {this.state.nom} </Text>
         <Text> Prénom : {this.state.prenom} </Text>
-        <Text> Niveau d'étude : {this.state.niveau} </Text>
+        <Text> Niveau d'étude : {this.state.niveau}</Text>
 
-        <Dialog.Container visible={visible}>
+        <Dialog.Container visible={visible1}>
           <Dialog.Title>BRAVO ! </Dialog.Title>
           {/* <Dialog.Button label="X" onPress={this.onPressFermerLaPopUp} /> */}
           <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
