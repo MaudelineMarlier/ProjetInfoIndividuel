@@ -20,6 +20,7 @@ import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 export default class HomePage extends Component {
   render() {
     const { navigation } = this.props;
+    // Affichage des planètes autour du Soleil
     return (
       <View style={{ alignItems: "center", backgroundColor: "white" }}>
         <View style={styles.lignePlanete}>
@@ -88,11 +89,6 @@ export default class HomePage extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: 10
-  },
   lignePlanete: {
     alignItems: "center",
     flexDirection: "row"

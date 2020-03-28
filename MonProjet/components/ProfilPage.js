@@ -60,10 +60,9 @@ export default class Soleil extends Component {
         <Text> Nom : {this.state.nom} </Text>
         <Text> Prénom : {this.state.prenom} </Text>
         <Text> Niveau d'étude : {this.state.niveau}</Text>
-
+        {/*         
         <Dialog.Container visible={visible1}>
           <Dialog.Title>BRAVO ! </Dialog.Title>
-          {/* <Dialog.Button label="X" onPress={this.onPressFermerLaPopUp} /> */}
           <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
           <Dialog.Button
             label="Go Jupiter"
@@ -77,44 +76,11 @@ export default class Soleil extends Component {
             label="Planète suivante"
             onPress={() => navigation.navigate("Saturne")}
           />
-        </Dialog.Container>
+        </Dialog.Container> */}
       </View>
     );
     return <View>{retour}</View>;
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: 10
-  },
-  button: {
-    marginTop: 30,
-    marginBottom: 70,
-    marginHorizontal: 20,
-    alignItems: "center",
-    backgroundColor: "lightblue",
-    padding: 10
-  },
-  buttonSelectionne: {
-    marginTop: 30,
-    marginBottom: 70,
-    marginHorizontal: 20,
-    alignItems: "center",
-    backgroundColor: "lightgreen",
-    padding: 10
-  },
-  instructions: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginTop: 20,
-    marginBottom: 50,
-    marginHorizontal: 30
-  },
-  phraseTrou: {
-    marginTop: 7,
-    marginBottom: 10
-  }
-});
+const styles = StyleSheet.create({});

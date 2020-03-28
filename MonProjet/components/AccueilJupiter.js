@@ -1,43 +1,14 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  Text,
-  ImageBackground,
-  View,
-  Button,
-  Image,
-  TouchableOpacity,
-  PropTypes,
-  Alert
-} from "react-native";
-// import Dialog, { DialogContent } from "react-native-popup-dialog";
-import Dialog from "react-native-dialog";
-import { Header } from "react-native-elements";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export default class AccueilJupiter extends Component {
   render() {
     const { navigation } = this.props;
     return (
-      <View style={{ alignItems: "center", backgroundColor: "white" }}>
-        <Text style={{ fontSize: 24, marginTop: 20, fontWeight: "bold" }}>
-          Phrases à trou
-        </Text>
-        <Image
-          source={require("./Images/jupiter1.jpg")}
-          style={{ width: 200, height: 200, marginTop: 30 }}
-        />
-        <Text
-          style={{
-            fontSize: 16,
-            marginTop: 20,
-            marginRight: 15,
-            marginLeft: 25,
-            alignContent: "center"
-          }}
-        >
+      <View style={styles.container}>
+        <Text style={styles.phraseTrou}>Phrases à trou</Text>
+        <Image source={require("./Images/jupiter1.jpg")} style={styles.image} />
+        <Text style={styles.instruction}>
           En atterissant sur cette planète, toutes vos affaires se sont
           renversées et malheureusement du café a coulé sur vos fiches de
           travail. {"\n"}
@@ -45,18 +16,7 @@ export default class AccueilJupiter extends Component {
           Sauras-tu retrouver les mots manquants ?
         </Text>
         <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
-          <Text
-            style={{
-              backgroundColor: "#D142D4",
-              marginTop: 30,
-              fontSize: 20,
-              fontWeight: "bold",
-              borderWidth: 2,
-              borderColor: "#D142D4",
-              borderRadius: 8,
-              padding: 6
-            }}
-          >
+          <Text style={styles.jouer}>
             {"  "}Commencer à jouer !{"  "}
           </Text>
         </TouchableOpacity>
@@ -66,36 +26,24 @@ export default class AccueilJupiter extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: 10
-  },
-  button: {
-    marginTop: 30,
-    marginBottom: 70,
-    marginHorizontal: 20,
-    alignItems: "center",
-    backgroundColor: "lightblue",
-    padding: 10
-  },
-  buttonSelectionne: {
-    marginTop: 30,
-    marginBottom: 70,
-    marginHorizontal: 20,
-    alignItems: "center",
-    backgroundColor: "lightgreen",
-    padding: 10
-  },
-  instructions: {
-    fontWeight: "bold",
+  container: { alignItems: "center", backgroundColor: "white" },
+  phraseTrou: { fontSize: 24, marginTop: 20, fontWeight: "bold" },
+  instruction: {
     fontSize: 16,
     marginTop: 20,
-    marginBottom: 50,
-    marginHorizontal: 30
+    marginRight: 15,
+    marginLeft: 25,
+    alignContent: "center"
   },
-  phraseTrou: {
-    marginTop: 7,
-    marginBottom: 10
-  }
+  jouer: {
+    backgroundColor: "#D142D4",
+    marginTop: 30,
+    fontSize: 20,
+    fontWeight: "bold",
+    borderWidth: 2,
+    borderColor: "#D142D4",
+    borderRadius: 8,
+    padding: 6
+  },
+  image: { width: 200, height: 200, marginTop: 30 }
 });

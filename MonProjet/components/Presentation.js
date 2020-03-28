@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import {
   StyleSheet,
-  Text,
-  ImageBackground,
   View,
   Button,
   TouchableOpacity,
   PropTypes,
   Alert
 } from "react-native";
-// import Dialog, { DialogContent } from "react-native-popup-dialog";
 import Dialog from "react-native-dialog";
 import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 
+// Pop-up à l'ouverture du jeu pour présenter l'application
 export default class Presentation extends Component {
   constructor(props) {
     super(props);
@@ -46,11 +44,3 @@ export default class Presentation extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    justifyContent: "center",
-    paddingHorizontal: 10
-  }
-});
