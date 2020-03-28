@@ -33,30 +33,17 @@ export default class JouerJupiter1 extends Component {
       valider: 0, // Savoir quand est ce qu'on a répondu à toutes les phrases
       progression: 0.33, // % de remplissage de progression
       navigate: this.props, // navigation entre les pages
-      help: Math.floor(Math.random() * 2), // Choix d'une variable pour l'ordre des boutons
+      random: Math.floor(Math.random() * 3), // Choix d'une variable pour l'ordre des boutons
       phrases: [
         "Le petit Leo se trouve ____ dans le noir",
         "Julie ____ son chat sous son lit ",
         "Pendant le confinement, il ____ travailler"
       ], // tableau des phrases à trou
       reponses: [
-        //tableau des réponses
-        [
-          ["perdu", 1],
-          ["perdue", 0],
-          ["perdus", 0]
-        ],
-        [
-          ["cherchait", 1],
-          ["chercher", 0],
-          ["cherchaient", 0]
-        ],
-        [
-          ["faut", 1],
-          ["faux", 0],
-          ["feau", 0]
-        ]
-      ]
+        ["perdu", "perdue", "perdus"],
+        ["cherchait", "chercher", "cherchaient"],
+        ["faut", "faux", "feau"]
+      ] //tableau des réponses
     };
   }
 
@@ -96,7 +83,7 @@ export default class JouerJupiter1 extends Component {
     if (this.state.numeroPhrase < 2)
       this.setState({
         numeroPhrase: this.state.numeroPhrase + 1,
-        help: Math.floor(Math.random() * 2)
+        random: Math.floor(Math.random() * 3)
       });
     if (this.state.valider == this.state.reponses.length - 1) {
       this.setState({ visible1: true });
@@ -129,9 +116,9 @@ export default class JouerJupiter1 extends Component {
   render() {
     const { navigation } = this.props;
 
-    //Tableau "boutons" pour choisir l'ordre des boutons à afficher
+    //Tableau "boutons" pour choisir l'ordre des boutons à afficher en fonction de la valeur de random
     var boutons = [];
-    if (this.state.help == 0) {
+    if (this.state.random == 0) {
       boutons.push(
         <TouchableOpacity
           style={
@@ -141,7 +128,7 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress1}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][0][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][0]}</Text>
         </TouchableOpacity>,
         <TouchableOpacity
           style={
@@ -151,7 +138,7 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress2}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][1][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][1]}</Text>
         </TouchableOpacity>,
         <TouchableOpacity
           style={
@@ -161,12 +148,12 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress3}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][2][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][2]}</Text>
         </TouchableOpacity>
       );
     }
 
-    if (this.state.help == 1) {
+    if (this.state.random == 1) {
       boutons.push(
         <TouchableOpacity
           style={
@@ -176,7 +163,7 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress2}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][1][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][1]}</Text>
         </TouchableOpacity>,
         <TouchableOpacity
           style={
@@ -186,7 +173,7 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress3}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][2][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][2]}</Text>
         </TouchableOpacity>,
         <TouchableOpacity
           style={
@@ -196,12 +183,12 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress1}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][0][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][0]}</Text>
         </TouchableOpacity>
       );
     }
 
-    if (this.state.help == 2) {
+    if (this.state.random == 2) {
       boutons.push(
         <TouchableOpacity
           style={
@@ -211,17 +198,7 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress3}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][2][0]}</Text>
-        </TouchableOpacity>,
-        <TouchableOpacity
-          style={
-            this.state.press2 % 2 == 0
-              ? styles.button
-              : styles.buttonSelectionne
-          }
-          onPress={this.onPress2}
-        >
-          <Text>{this.state.reponses[this.state.numeroPhrase][1][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][2]}</Text>
         </TouchableOpacity>,
         <TouchableOpacity
           style={
@@ -231,7 +208,17 @@ export default class JouerJupiter1 extends Component {
           }
           onPress={this.onPress1}
         >
-          <Text>{this.state.reponses[this.state.numeroPhrase][0][0]}</Text>
+          <Text>{this.state.reponses[this.state.numeroPhrase][0]}</Text>
+        </TouchableOpacity>,
+        <TouchableOpacity
+          style={
+            this.state.press2 % 2 == 0
+              ? styles.button
+              : styles.buttonSelectionne
+          }
+          onPress={this.onPress2}
+        >
+          <Text>{this.state.reponses[this.state.numeroPhrase][1]}</Text>
         </TouchableOpacity>
       );
     }
