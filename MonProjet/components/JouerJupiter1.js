@@ -22,25 +22,25 @@ export default class JouerJupiter1 extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      press1: 0,
-      press2: 0,
-      press3: 0,
-      reponse: 0,
-      visible1: false,
-      visible2: false,
-      visible3: false,
-      visibleBoutonSuivant: true,
-      numeroPhrase: 0,
-      valider: 0,
-      progression: 0.33,
-      navigate: this.props,
-      help: Math.floor(Math.random() * 2),
+      press1: 0, // valeur pour savoir si le bouton1 est séléctionné ou non
+      press2: 0, // valeur pour savoir si le bouton2 est séléctionné ou non
+      press3: 0, // valeur pour savoir si le bouton3 est séléctionné ou non
+      reponse: 0, //
+      visible1: false, // Ouverture de la pop-up de félicitation
+      visible2: false, // Ouverture de la pop-up de mauvaise réponse
+      visible3: false, // Ouverture de la pop-up d'abandon
+      numeroPhrase: 0, // Savoir quelle phrase afficher
+      valider: 0, // Savoir quand est ce qu'on a répondu à toutes les phrases
+      progression: 0.33, // % de remplissage de progression
+      navigate: this.props, // navigation entre les pages
+      help: Math.floor(Math.random() * 2), // Choix d'une variable pour l'ordre des boutons
       phrases: [
         "Le petit Leo se trouve ____ dans le noir",
         "Julie ____ son chat sous son lit ",
         "Pendant le confinement, il ____ travailler"
-      ],
+      ], // tableau des phrases à trou
       reponses: [
+        //tableau des réponses
         [
           ["perdu", 1],
           ["perdue", 0],
@@ -60,9 +60,10 @@ export default class JouerJupiter1 extends Component {
     };
   }
 
+  //Choisir la couleur des boutons, la mettre en violet lorsqu'ils sont séléctionnés
   onPress1 = () => {
     this.setState({
-      press1: this.state.press1 + 1,
+      press1: this.state.press1 + 1, // On ajoute 1 pour créer un pair ou impair
       press2: 0,
       press3: 0,
       reponse: 1
@@ -70,7 +71,7 @@ export default class JouerJupiter1 extends Component {
   };
   onPress2 = () => {
     this.setState({
-      press2: this.state.press2 + 1,
+      press2: this.state.press2 + 1, // On ajoute 1 pour créer un pair ou impair
       press1: 0,
       press3: 0,
       reponse: 2
@@ -78,49 +79,47 @@ export default class JouerJupiter1 extends Component {
   };
   onPress3 = () => {
     this.setState({
-      press3: this.state.press3 + 1,
+      press3: this.state.press3 + 1, // On ajoute 1 pour créer un pair ou impair
       press1: 0,
       press2: 0,
       reponse: 3
     });
   };
+
+  //Bouton pour passer à la phrase suivante
   onPressBonneSolution = () => {
     this.setState({
-      //visible1: true,
-      // visibleBoutonSuivant: false,
       progression: this.state.progression + 0.34,
       press1: 0,
       valider: this.state.valider + 1
-      //numeroPhrase: this.state.numeroPhrase + 1
-      //reponse: 1
     });
     if (this.state.numeroPhrase < 2)
       this.setState({
         numeroPhrase: this.state.numeroPhrase + 1,
         help: Math.floor(Math.random() * 2)
       });
-    if (this.state.valider == 2) {
+    if (this.state.valider == this.state.reponses.length - 1) {
       this.setState({ visible1: true });
     }
   };
+
+  //Bouton pour prévenir que la réponse n'est pas bonne
   onPressMauvaiseSolution = () => {
     this.setState({
       visible2: true
     });
   };
+
+  //Bouton pour fermer la pop-up
   onPressFermerLaPopUp = () => {
     this.setState({
       visible1: false,
       visible2: false,
       visible3: false
     });
-    if (this.state.valider == 3) {
-      this.setState({
-        visibleBoutonSuivant: false
-      });
-    }
   };
 
+  //Bouton pour afficher la pop-up d'abandon
   onPressAbandon = () => {
     this.setState({
       visible3: true
@@ -129,6 +128,8 @@ export default class JouerJupiter1 extends Component {
 
   render() {
     const { navigation } = this.props;
+
+    //Tableau "boutons" pour choisir l'ordre des boutons à afficher
     var boutons = [];
     if (this.state.help == 0) {
       boutons.push(
@@ -315,7 +316,6 @@ export default class JouerJupiter1 extends Component {
         </Text>
         <Button
           title="Abandonner"
-          //disabled={this.state.visibleBoutonSuivant}
           color="black"
           onPress={this.onPressAbandon}
         />
