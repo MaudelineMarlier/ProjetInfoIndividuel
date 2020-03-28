@@ -51,41 +51,43 @@ export default class JouerJupiter1 extends Component {
   onPress1 = () => {
     this.setState({
       press1: this.state.press1 + 1, // On ajoute 1 pour créer un pair ou impair
-      press2: 0,
+      press2: 0, // On remet un pair pour mettre les autres boutons en gris
       press3: 0,
-      reponse: 1
+      reponse: 1 // On met 1 car bonne réponse
     });
   };
   onPress2 = () => {
     this.setState({
-      press2: this.state.press2 + 1, // On ajoute 1 pour créer un pair ou impair
+      press2: this.state.press2 + 1,
       press1: 0,
       press3: 0,
-      reponse: 2
+      reponse: 2 // On met une valeur différente de 1 car mauvaise réponse
     });
   };
   onPress3 = () => {
     this.setState({
-      press3: this.state.press3 + 1, // On ajoute 1 pour créer un pair ou impair
+      press3: this.state.press3 + 1,
       press1: 0,
       press2: 0,
-      reponse: 3
+      reponse: 2
     });
   };
 
   //Bouton pour passer à la phrase suivante
   onPressBonneSolution = () => {
     this.setState({
-      progression: this.state.progression + 0.34,
-      press1: 0,
-      valider: this.state.valider + 1
+      progression: this.state.progression + 0.34, // On ajoute 1/3 de la barre
+      press1: 0, // on remet le bouton gris
+      valider: this.state.valider + 1 // ajouter 1 quand on passe à la phrase suivante pour afficher la fin (cf l88)
     });
     if (this.state.numeroPhrase < 2)
+      //Condition pour ne pas faire plus que 3 phrases
       this.setState({
-        numeroPhrase: this.state.numeroPhrase + 1,
-        random: Math.floor(Math.random() * 3)
+        numeroPhrase: this.state.numeroPhrase + 1, // ajouter 1 pour passer à la phrase suivante
+        random: Math.floor(Math.random() * 3) // nouveau random pour changer l'ordre des boutons
       });
     if (this.state.valider == this.state.reponses.length - 1) {
+      // Condition pour afficher la fin après la 3e phrase
       this.setState({ visible1: true });
     }
   };
@@ -93,7 +95,7 @@ export default class JouerJupiter1 extends Component {
   //Bouton pour prévenir que la réponse n'est pas bonne
   onPressMauvaiseSolution = () => {
     this.setState({
-      visible2: true
+      visible2: true // Montrer la pop-up mauvaise réponse
     });
   };
 
@@ -230,7 +232,6 @@ export default class JouerJupiter1 extends Component {
           {"\n"}
           Clique sur le mot que tu penses être le bon puis valide ta réponse
           {"\n"}__________________________________________
-          {/* {this.state.numeroPhrase} */}
         </Text>
         <Progress.Bar
           style={{ color: "green" }}
@@ -269,7 +270,6 @@ export default class JouerJupiter1 extends Component {
         <View>
           <Dialog.Container visible={this.state.visible1}>
             <Dialog.Title>BRAVO ! </Dialog.Title>
-            {/* <Dialog.Button label="X" onPress={this.onPressFermerLaPopUp} /> */}
             <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
             <Dialog.Button
               label="Go Jupiter"
@@ -308,9 +308,7 @@ export default class JouerJupiter1 extends Component {
         />
         <Dialog.Container visible={this.state.visible3}>
           <Dialog.Title>Es-tu sûr de vouloir abandonner ?</Dialog.Title>
-          <Dialog.Description>
-            {/* Es-tu sur de vouloir abandonner ? */}
-          </Dialog.Description>
+          <Dialog.Description></Dialog.Description>
           <Dialog.Button
             label="Oui           "
             onPress={() => navigation.navigate("Jupiter")}
