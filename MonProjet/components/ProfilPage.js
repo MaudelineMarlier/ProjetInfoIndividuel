@@ -13,10 +13,6 @@ import {
 } from "react-native";
 // import Dialog, { DialogContent } from "react-native-popup-dialog";
 import Dialog from "react-native-dialog";
-import { Header } from "react-native-elements";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { TouchableHighlight } from "react-native-gesture-handler";
 
 export default class Soleil extends Component {
   constructor(props) {
@@ -35,7 +31,7 @@ export default class Soleil extends Component {
 
   render() {
     const { navigation } = this.props;
-    var visible1 = false;
+    //var visible1 = false;
     var retour = (
       <View
         style={{
@@ -45,7 +41,6 @@ export default class Soleil extends Component {
           flexDirection: "column"
         }}
       >
-        <Button title="Valider" color="#4DB844" onPress={(visible1 = true)} />
         <Text
           style={{
             fontSize: 24,
@@ -60,6 +55,14 @@ export default class Soleil extends Component {
         <Text> Nom : {this.state.nom} </Text>
         <Text> Prénom : {this.state.prenom} </Text>
         <Text> Niveau d'étude : {this.state.niveau}</Text>
+        {/* <TouchableOpacity>
+          <Text
+            style={styles.jouer}
+            onPress={() => navigation.navigate("JouerJupiter1")}
+          >
+            {"  "}Commencer à jouer !{"  "}
+          </Text>
+        </TouchableOpacity> */}
         {/*         
         <Dialog.Container visible={visible1}>
           <Dialog.Title>BRAVO ! </Dialog.Title>
@@ -83,4 +86,15 @@ export default class Soleil extends Component {
   }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  jouer: {
+    backgroundColor: "#D142D4",
+    marginTop: 30,
+    fontSize: 20,
+    fontWeight: "bold",
+    borderWidth: 2,
+    borderColor: "#D142D4",
+    borderRadius: 8,
+    padding: 6
+  }
+});

@@ -9,14 +9,8 @@ import {
   PropTypes,
   Alert
 } from "react-native";
-// import Dialog, { DialogContent } from "react-native-popup-dialog";
 import Dialog from "react-native-dialog";
-import { Header } from "react-native-elements";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 import * as Progress from "react-native-progress";
-import App from "../App";
 
 export default class JouerJupiter1 extends Component {
   constructor(props) {
@@ -272,16 +266,8 @@ export default class JouerJupiter1 extends Component {
             <Dialog.Title>BRAVO ! </Dialog.Title>
             <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
             <Dialog.Button
-              label="Go Jupiter"
-              onPress={() => navigation.navigate("Jupiter")}
-            />
-            <Dialog.Button
-              label="Home"
+              label="Retour à l'accueil"
               onPress={() => navigation.navigate("Accueil")}
-            />
-            <Dialog.Button
-              label="Planète suivante"
-              onPress={() => navigation.navigate("Saturne")}
             />
           </Dialog.Container>
         </View>
@@ -289,7 +275,7 @@ export default class JouerJupiter1 extends Component {
           <Dialog.Container visible={this.state.visible2}>
             <Dialog.Title>Mauvaise réponse... </Dialog.Title>
             <Dialog.Description>
-              Clique sur "Recommencer" pour réessayer{" "}
+              Clique sur "Recommencer" pour réessayer
             </Dialog.Description>
             <Dialog.Button
               label="Recommencer"
@@ -308,7 +294,6 @@ export default class JouerJupiter1 extends Component {
         />
         <Dialog.Container visible={this.state.visible3}>
           <Dialog.Title>Es-tu sûr de vouloir abandonner ?</Dialog.Title>
-          <Dialog.Description></Dialog.Description>
           <Dialog.Button
             label="Oui           "
             onPress={() => navigation.navigate("Jupiter")}

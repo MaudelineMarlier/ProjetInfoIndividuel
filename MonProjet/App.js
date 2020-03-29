@@ -9,22 +9,15 @@ import {
   TouchableOpacity,
   Alert
 } from "react-native";
-import { Header } from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TextInput, TouchableHighlight } from "react-native-gesture-handler";
 import HomePage from "./components/HomePage";
 import JouerJupiter1 from "./components/JouerJupiter1";
 import Presentation from "./components/Presentation";
-import Dialog from "react-native-dialog";
 import AccueilJupiter from "./components/AccueilJupiter";
 import Soleil from "./components/ProfilPage";
-import { ScreenStackHeaderLeftView } from "react-native-screens";
 
-// import { render } from "react-dom";
-// import "react-native-gesture-handler";
-// import "react-native-gesture-handler";
-
+// Une fonction est créée pour chaque page pour savoir ce qu'on affiche dedans
 function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
@@ -109,6 +102,7 @@ function VenusScreen({ navigation }) {
 
 const Stack = createStackNavigator();
 
+// Un stack screen est créé pour chaque page pour savoir comment y aller
 function MyStack() {
   return (
     <Stack.Navigator>
@@ -184,7 +178,12 @@ function MyStack() {
             backgroundColor: "#9E1EA1"
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
+          headerRight: () => (
+            <TouchableOpacity onPress={() => alert("Pas d'aide disponible")}>
+              <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
+            </TouchableOpacity>
+          )
         }}
       />
       <Stack.Screen
@@ -290,19 +289,5 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     alignItems: "center"
-  },
-  lignePlanete: {
-    alignItems: "center",
-    flexDirection: "row"
-  },
-  instructions: {
-    fontWeight: "bold",
-    fontSize: 16,
-    marginTop: 20,
-    marginHorizontal: 30
-  },
-  phraseTrou: {
-    marginTop: 7,
-    marginBottom: 10
   }
 });
