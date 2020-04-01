@@ -21,13 +21,13 @@ export default class Soleil extends Component {
       nom: "Dupont",
       prenom: "Julien",
       niveau: "CP",
-      visible: false
+      visible: true
     };
     //this.handleChangeText = this.handleChangeText.blind(this);
   }
-  onPressVisible = () => {
-    //this.setState({ visible: true });
-  };
+  // onPressVisible = () => {
+  //   //this.setState({ visible: true });
+  // };
 
   render() {
     const { navigation } = this.props;
@@ -55,16 +55,20 @@ export default class Soleil extends Component {
         <Text> Nom : {this.state.nom} </Text>
         <Text> Prénom : {this.state.prenom} </Text>
         <Text> Niveau d'étude : {this.state.niveau}</Text>
-        {/* <TouchableOpacity>
-          <Text
-            style={styles.jouer}
-            onPress={() => navigation.navigate("JouerJupiter1")}
-          >
+
+        <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
+          <Text style={styles.jouer}>
             {"  "}Commencer à jouer !{"  "}
           </Text>
-        </TouchableOpacity> */}
-        {/*         
-        <Dialog.Container visible={visible1}>
+        </TouchableOpacity>
+
+        <Button
+          onPress={() => this.setState({ visile: true })}
+          label="press"
+          title="press"
+        />
+
+        <Dialog.Container visible={this.visible}>
           <Dialog.Title>BRAVO ! </Dialog.Title>
           <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
           <Dialog.Button
@@ -79,7 +83,7 @@ export default class Soleil extends Component {
             label="Planète suivante"
             onPress={() => navigation.navigate("Saturne")}
           />
-        </Dialog.Container> */}
+        </Dialog.Container>
       </View>
     );
     return <View>{retour}</View>;
