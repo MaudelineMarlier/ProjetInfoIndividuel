@@ -66,7 +66,7 @@ function MarsScreen({ navigation }) {
 }
 function SoleilScreen({ navigation }) {
   return (
-    <View>
+    <View style={{ flex: 1, backgroundColor: "white" }}>
       <Soleil navigation={navigation} />
     </View>
   );

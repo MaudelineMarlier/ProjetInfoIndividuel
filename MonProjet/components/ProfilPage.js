@@ -5,11 +5,10 @@ import {
   ImageBackground,
   View,
   Button,
-  Image,
   TouchableOpacity,
+  TouchableNativeFeedback,
   PropTypes,
-  Alert,
-  TextInput
+  Alert
 } from "react-native";
 // import Dialog, { DialogContent } from "react-native-popup-dialog";
 import Dialog from "react-native-dialog";
@@ -19,9 +18,12 @@ export default class Soleil extends Component {
     super(props);
     this.state = {
       nom: "Dupont",
+      nom1: "Dupont",
       prenom: "Julien",
+      prenom1: "Julien",
       niveau: "CP",
-      visible: true
+      niveau1: "CP",
+      visible1: false
     };
     //this.handleChangeText = this.handleChangeText.blind(this);
   }
@@ -33,14 +35,7 @@ export default class Soleil extends Component {
     const { navigation } = this.props;
     //var visible1 = false;
     var retour = (
-      <View
-        style={{
-          flex: 1,
-          marginLeft: 30,
-          backgroundColor: "white",
-          flexDirection: "column"
-        }}
-      >
+      <View style={{ flexDirection: "column" }}>
         <Text
           style={{
             fontSize: 24,
@@ -52,36 +47,59 @@ export default class Soleil extends Component {
         >
           Ton profil
         </Text>
-        <Text> Nom : {this.state.nom} </Text>
-        <Text> Prénom : {this.state.prenom} </Text>
-        <Text> Niveau d'étude : {this.state.niveau}</Text>
-
-        <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
-          <Text style={styles.jouer}>
-            {"  "}Commencer à jouer !{"  "}
-          </Text>
-        </TouchableOpacity>
-
-        <Button
-          onPress={() => this.setState({ visile: true })}
-          label="press"
-          title="press"
-        />
-
-        <Dialog.Container visible={this.visible}>
-          <Dialog.Title>BRAVO ! </Dialog.Title>
-          <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
+        <View style={{ marginLeft: 20 }}>
+          <View style={styles.titre}>
+            <Text style={{ fontWeight: "bold" }}> Nom : </Text>
+            <Text>{this.state.nom}</Text>
+          </View>
+          <View style={styles.titre}>
+            <Text style={{ fontWeight: "bold" }}> Prénom : </Text>
+            <Text>{this.state.prenom}</Text>
+          </View>
+          <View style={styles.titre}>
+            <Text style={{ fontWeight: "bold" }}> Niveau d'étude : </Text>
+            <Text>{this.state.niveau}</Text>
+          </View>
+        </View>
+        <View style={{ alignItems: "flex-end", marginRight: 20 }}>
+          <TouchableOpacity
+            style={styles.jouer}
+            onPress={() => this.setState({ visible1: true })}
+          >
+            <Text>Modifier</Text>
+          </TouchableOpacity>
+        </View>
+        <Dialog.Container visible={this.state.visible1}>
+          <Dialog.Title> Modification </Dialog.Title>
+          <Dialog.Input
+            label="Nom"
+            onChangeText={nom1 => this.setState({ nom1 })}
+            style={{ backgroundColor: "lightgrey" }}
+          ></Dialog.Input>
+          <Dialog.Input
+            label="Prénom"
+            onChangeText={prenom1 => this.setState({ prenom1 })}
+            style={{ backgroundColor: "lightgrey" }}
+          ></Dialog.Input>
+          <Dialog.Input
+            label="Niveau de classe"
+            onChangeText={niveau1 => this.setState({ niveau1 })}
+            style={{ backgroundColor: "lightgrey" }}
+          ></Dialog.Input>
           <Dialog.Button
-            label="Go Jupiter"
-            onPress={() => navigation.navigate("Jupiter")}
+            label="Valider"
+            onPress={() =>
+              this.setState({
+                nom: this.state.nom1,
+                visible1: false,
+                prenom: this.state.prenom1,
+                niveau: this.state.niveau1
+              })
+            }
           />
           <Dialog.Button
-            label="Home"
-            onPress={() => navigation.navigate("Accueil")}
-          />
-          <Dialog.Button
-            label="Planète suivante"
-            onPress={() => navigation.navigate("Saturne")}
+            label="Annuler"
+            onPress={() => this.setState({ visible1: false })}
           />
         </Dialog.Container>
       </View>
@@ -93,12 +111,20 @@ export default class Soleil extends Component {
 const styles = StyleSheet.create({
   jouer: {
     backgroundColor: "#D142D4",
-    marginTop: 30,
+    marginTop: 10,
     fontSize: 20,
     fontWeight: "bold",
     borderWidth: 2,
     borderColor: "#D142D4",
     borderRadius: 8,
-    padding: 6
+    padding: 8,
+    alignItems: "center",
+    width: 80
+  },
+  titre: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 5,
+    fontSize: 18
   }
 });
