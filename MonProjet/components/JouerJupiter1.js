@@ -7,7 +7,7 @@ import {
   Button,
   TouchableOpacity,
   PropTypes,
-  Alert
+  Alert,
 } from "react-native";
 import Dialog from "react-native-dialog";
 import * as Progress from "react-native-progress";
@@ -32,18 +32,18 @@ export default class JouerJupiter1 extends Component {
       phrases: [
         "Thomas nous avons un problème !\n       Nous avons bien ________ les extraits de roche que nous t'avons demandé. \n\n\n\n ", // tableau des phrases à trou
         "Thomas nous avons un problème !\n       Nous avons bien récupéré les extraits de roche que nous t'avons demandé. \n       Malheureusement il n'y en a pas assez pour  ________ des analyses. \n \n ", // tableau des phrases à trou
-        "Thomas nous avons un problème !\n       Nous avons bien récupéré les extraits de roche que nous t'avons demandé. \n       Malheureusement il n'y en a pas assez pour effectuer des analyses. \n      Il faut absolument nous en _______ d'autres au plus vite !" // tableau des phrases à trou
+        "Thomas nous avons un problème !\n       Nous avons bien récupéré les extraits de roche que nous t'avons demandé. \n       Malheureusement il n'y en a pas assez pour effectuer des analyses. \n      Il faut absolument nous en _______ d'autres au plus vite !", // tableau des phrases à trou
       ], // tableau des phrases à trou
       reponses: [
         ["récupéré", "récupérée", "récupérer"],
         ["effectuer", "effectué", "effectuais"],
-        ["envoyer", "envoyé", "envoyais"]
+        ["envoyer", "envoyé", "envoyais"],
       ], //tableau des réponses
       indices: [
-        "On accorde l'adjectif avec le sujet car c'est le verbe être, Leo est masculin singulier : on ne met ni de e ni de s.",
-        "à écrire",
-        "à écrire"
-      ] //tableau des indices
+        "Le mot 'avons' est l'auxiliaire avoir, le participe passé ne s'accorde pas avec le sujet dans ce cas.",
+        "Demande toi si tu peux remplacer le mot par 'prendre' ou 'pris' pour savoir si c'est l'infinitif ou le participe passé",
+        "Demande toi si tu peux remplacer le mot par 'prendre' ou 'pris' pour savoir si c'est l'infinitif ou le participe passé",
+      ], //tableau des indices
     };
   }
 
@@ -53,7 +53,7 @@ export default class JouerJupiter1 extends Component {
       press1: this.state.press1 + 1, // On ajoute 1 pour créer un pair ou impair
       press2: 0, // On remet un pair pour mettre les autres boutons en gris
       press3: 0,
-      reponse: 1 // On met 1 car bonne réponse
+      reponse: 1, // On met 1 car bonne réponse
     });
   };
   onPress2 = () => {
@@ -61,7 +61,7 @@ export default class JouerJupiter1 extends Component {
       press2: this.state.press2 + 1,
       press1: 0,
       press3: 0,
-      reponse: 2 // On met une valeur différente de 1 car mauvaise réponse
+      reponse: 2, // On met une valeur différente de 1 car mauvaise réponse
     });
   };
   onPress3 = () => {
@@ -69,7 +69,7 @@ export default class JouerJupiter1 extends Component {
       press3: this.state.press3 + 1,
       press1: 0,
       press2: 0,
-      reponse: 2
+      reponse: 2,
     });
   };
 
@@ -78,13 +78,13 @@ export default class JouerJupiter1 extends Component {
     this.setState({
       progression: this.state.progression + 0.34, // On ajoute 1/3 de la barre
       press1: 0, // on remet le bouton gris
-      valider: this.state.valider + 1 // ajouter 1 quand on passe à la phrase suivante pour afficher la fin (cf l88)
+      valider: this.state.valider + 1, // ajouter 1 quand on passe à la phrase suivante pour afficher la fin (cf l88)
     });
     if (this.state.numeroPhrase < 2)
       //Condition pour ne pas faire plus que 3 phrases
       this.setState({
         numeroPhrase: this.state.numeroPhrase + 1, // ajouter 1 pour passer à la phrase suivante
-        random: Math.floor(Math.random() * 3) // nouveau random pour changer l'ordre des boutons
+        random: Math.floor(Math.random() * 3), // nouveau random pour changer l'ordre des boutons
       });
     if (this.state.valider == this.state.reponses.length - 1) {
       // Condition pour afficher la fin après la 3e phrase
@@ -95,7 +95,7 @@ export default class JouerJupiter1 extends Component {
   //Bouton pour prévenir que la réponse n'est pas bonne
   onPressMauvaiseSolution = () => {
     this.setState({
-      visible2: true // Montrer la pop-up mauvaise réponse
+      visible2: true, // Montrer la pop-up mauvaise réponse
     });
   };
 
@@ -104,14 +104,14 @@ export default class JouerJupiter1 extends Component {
     this.setState({
       visible1: false,
       visible2: false,
-      visible3: false
+      visible3: false,
     });
   };
 
   //Bouton pour afficher la pop-up d'abandon
   onPressAbandon = () => {
     this.setState({
-      visible3: true
+      visible3: true,
     });
   };
 
@@ -243,7 +243,7 @@ export default class JouerJupiter1 extends Component {
             borderWidth: 2,
             borderColor: "black",
             width: 300,
-            alignContent: "center"
+            alignContent: "center",
           }}
         >
           <Text style={styles.phraseTrou}>
@@ -282,7 +282,7 @@ export default class JouerJupiter1 extends Component {
           <Dialog.Container visible={this.state.visible2}>
             <Dialog.Title>Mauvaise réponse... </Dialog.Title>
             <Dialog.Description>
-              Clique sur "Recommencer" pour réessayer
+              Tu vas y arriver ! Clique sur "Recommencer" pour réessayer
             </Dialog.Description>
             <Dialog.Button
               label="Recommencer"
@@ -298,7 +298,7 @@ export default class JouerJupiter1 extends Component {
           style={{
             flexDirection: "row",
             justifyContent: "flex-end",
-            marginTop: 15
+            marginTop: 15,
           }}
         >
           <TouchableOpacity
@@ -309,7 +309,7 @@ export default class JouerJupiter1 extends Component {
               borderColor: "#E93B58",
               borderRadius: 15,
               backgroundColor: "#E93B58",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
             onPress={this.onPressAbandon}
           >
@@ -325,7 +325,7 @@ export default class JouerJupiter1 extends Component {
               borderColor: "#3BBBE9",
               borderRadius: 15,
               backgroundColor: "#3BBBE9",
-              justifyContent: "center"
+              justifyContent: "center",
             }}
             onPress={() => this.setState({ visible4: true })}
           >
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     justifyContent: "center",
-    paddingHorizontal: 10
+    paddingHorizontal: 10,
   },
   button: {
     marginTop: 30,
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#E2E1E1",
     borderRadius: 8,
-    padding: 7
+    padding: 7,
   },
   buttonSelectionne: {
     marginTop: 30,
@@ -391,19 +391,19 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#AEAEAE",
     borderRadius: 8,
-    padding: 7
+    padding: 7,
   },
   instructions: {
     fontWeight: "bold",
     fontSize: 16,
     marginTop: 20,
     marginBottom: 30,
-    marginHorizontal: 30
+    marginHorizontal: 30,
   },
   phraseTrou: {
     marginTop: 7,
     marginBottom: 10,
-    marginHorizontal: 13
+    marginHorizontal: 13,
     //textAlign: "justify"
-  }
+  },
 });
