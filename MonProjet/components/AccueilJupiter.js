@@ -11,8 +11,7 @@ export default class AccueilJupiter extends Component {
         <Image source={require("./Images/jupiter1.jpg")} style={styles.image} />
         <Text style={styles.instruction}>
           En atterissant sur cette planète, toutes vos affaires se sont
-          renversées et malheureusement du café a coulé sur vos fiches de
-          travail. {"\n"}
+          renversées et du café a coulé sur vos fiches de travail. {"\n"}
           {"\n"}
           Sauras-tu retrouver les mots manquants ?
         </Text>

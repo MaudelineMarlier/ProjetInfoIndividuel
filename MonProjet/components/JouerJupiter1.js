@@ -30,14 +30,14 @@ export default class JouerJupiter1 extends Component {
       navigate: this.props, // navigation entre les pages
       random: Math.floor(Math.random() * 3), // Choix d'une variable pour l'ordre des boutons
       phrases: [
-        "Le petit Leo se trouve ____ dans le noir",
-        "Julie ____ son chat sous son lit ",
-        "Pendant le confinement, il ____ travailler"
+        "Thomas nous avons un problème !\n       Nous avons bien ________ les extraits de roche que nous t'avons demandé. \n\n\n\n ", // tableau des phrases à trou
+        "Thomas nous avons un problème !\n       Nous avons bien récupéré les extraits de roche que nous t'avons demandé. \n       Malheureusement il n'y en a pas assez pour  ________ des analyses. \n \n ", // tableau des phrases à trou
+        "Thomas nous avons un problème !\n       Nous avons bien récupéré les extraits de roche que nous t'avons demandé. \n       Malheureusement il n'y en a pas assez pour effectuer des analyses. \n      Il faut absolument nous en _______ d'autres au plus vite !" // tableau des phrases à trou
       ], // tableau des phrases à trou
       reponses: [
-        ["perdu", "perdue", "perdus"],
-        ["cherchait", "chercher", "cherchaient"],
-        ["faut", "faux", "feau"]
+        ["récupéré", "récupérée", "récupérer"],
+        ["effectuer", "effectué", "effectuais"],
+        ["envoyer", "envoyé", "envoyais"]
       ], //tableau des réponses
       indices: [
         "On accorde l'adjectif avec le sujet car c'est le verbe être, Leo est masculin singulier : on ne met ni de e ni de s.",
@@ -229,22 +229,21 @@ export default class JouerJupiter1 extends Component {
       <View style={{ alignItems: "center", flexDirection: "column" }}>
         <Text style={styles.instructions}>
           Remplis ces phrases pour aider Thomas à coloniser Jupiter ! {"\n"}
-          {"\n"}
           Clique sur le mot que tu penses être le bon puis valide ta réponse
-          {"\n"}__________________________________________
         </Text>
         <Progress.Bar
           style={{ color: "green" }}
           progress={this.state.progression}
           width={200}
         />
-        {/* <Text>{"\n"}</Text> */}
         <View
           style={{
             flexDirection: "row",
             marginTop: 30,
             borderWidth: 2,
-            borderColor: "black"
+            borderColor: "black",
+            width: 300,
+            alignContent: "center"
           }}
         >
           <Text style={styles.phraseTrou}>
@@ -266,7 +265,13 @@ export default class JouerJupiter1 extends Component {
         <View>
           <Dialog.Container visible={this.state.visible1}>
             <Dialog.Title style={{ color: "#35BD35" }}>BRAVO ! </Dialog.Title>
-            <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
+            <Dialog.Description style={{ textAlign: "justify" }}>
+              {""}Thomas nous avons un problème ! {"\n"}
+              Nous avons bien récupéré les extraits de roche que nous t'avons
+              demandé. {"\n"}Malheureusement il n'y en a pas assez pour
+              effectuer des analyses.{"\n"}Il faut absolument nous en envoyer
+              d'autres au plus vite !
+            </Dialog.Description>
             <Dialog.Button
               label="Retour à l'accueil"
               onPress={() => navigation.navigate("Accueil")}
@@ -287,8 +292,7 @@ export default class JouerJupiter1 extends Component {
         </View>
         <Text>
           {"\n"}
-          {"\n"} {"\n"}_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
-          _ _ _
+          {"\n"}_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
         </Text>
         <View
           style={{
@@ -369,7 +373,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 30,
-    marginBottom: 50,
+    marginBottom: 30,
     marginHorizontal: 12,
     alignItems: "center",
     backgroundColor: "#E2E1E1",
@@ -380,7 +384,7 @@ const styles = StyleSheet.create({
   },
   buttonSelectionne: {
     marginTop: 30,
-    marginBottom: 50,
+    marginBottom: 30,
     marginHorizontal: 12,
     alignItems: "center",
     backgroundColor: "#AEAEAE",
@@ -398,6 +402,8 @@ const styles = StyleSheet.create({
   },
   phraseTrou: {
     marginTop: 7,
-    marginBottom: 10
+    marginBottom: 10,
+    marginHorizontal: 13
+    //textAlign: "justify"
   }
 });
