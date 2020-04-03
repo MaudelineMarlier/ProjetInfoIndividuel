@@ -25,15 +25,10 @@ export default class Soleil extends Component {
       niveau1: "CP",
       visible1: false
     };
-    //this.handleChangeText = this.handleChangeText.blind(this);
   }
-  // onPressVisible = () => {
-  //   //this.setState({ visible: true });
-  // };
 
   render() {
     const { navigation } = this.props;
-    //var visible1 = false;
     var retour = (
       <View style={{ flexDirection: "column" }}>
         <Text
@@ -62,6 +57,7 @@ export default class Soleil extends Component {
           </View>
         </View>
         <View style={{ alignItems: "flex-end", marginRight: 20 }}>
+          <Text>{"\n"}</Text>
           <TouchableOpacity
             style={styles.jouer}
             onPress={() => this.setState({ visible1: true })}

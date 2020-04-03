@@ -130,6 +130,7 @@ function MyStack() {
       <Stack.Screen
         name="Jupiter"
         component={JupiterScreen}
+        initialParams={{ affichages: "noir" }}
         options={{
           title: "Bienvenue sur Jupiter",
           headerStyle: {

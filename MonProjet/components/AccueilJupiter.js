@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { BaseRouter } from "@react-navigation/native";
 
 export default class AccueilJupiter extends Component {
   render() {
     const { navigation } = this.props;
-    return (
+    var retour = (
       <View style={styles.container}>
         <Text style={styles.phraseTrou}>Phrases à trou</Text>
         <Image source={require("./Images/jupiter1.jpg")} style={styles.image} />
@@ -22,6 +23,7 @@ export default class AccueilJupiter extends Component {
         </TouchableOpacity>
       </View>
     );
+    return <View>{retour}</View>;
   }
 }
 

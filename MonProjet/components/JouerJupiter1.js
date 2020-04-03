@@ -23,6 +23,7 @@ export default class JouerJupiter1 extends Component {
       visible1: false, // Ouverture de la pop-up de félicitation
       visible2: false, // Ouverture de la pop-up de mauvaise réponse
       visible3: false, // Ouverture de la pop-up d'abandon
+      visible4: false, //Ouverture de la pop-up indice
       numeroPhrase: 0, // Savoir quelle phrase afficher
       valider: 0, // Savoir quand est ce qu'on a répondu à toutes les phrases
       progression: 0.33, // % de remplissage de progression
@@ -37,7 +38,12 @@ export default class JouerJupiter1 extends Component {
         ["perdu", "perdue", "perdus"],
         ["cherchait", "chercher", "cherchaient"],
         ["faut", "faux", "feau"]
-      ] //tableau des réponses
+      ], //tableau des réponses
+      indices: [
+        "On accorde l'adjectif avec le sujet car c'est le verbe être, Leo est masculin singulier : on ne met ni de e ni de s.",
+        "à écrire",
+        "à écrire"
+      ] //tableau des indices
     };
   }
 
@@ -232,15 +238,11 @@ export default class JouerJupiter1 extends Component {
           progress={this.state.progression}
           width={200}
         />
-        <Text>
-          {"\n"}
-          {"\n"}
-          {"\n"}
-        </Text>
+        {/* <Text>{"\n"}</Text> */}
         <View
           style={{
             flexDirection: "row",
-            marginTop: 15,
+            marginTop: 30,
             borderWidth: 2,
             borderColor: "black"
           }}
@@ -254,7 +256,7 @@ export default class JouerJupiter1 extends Component {
         <View style={styles.container}>{boutons}</View>
         <Button
           title="Valider"
-          color="#4DB844"
+          color="#35BD35"
           onPress={
             this.state.reponse == 1
               ? this.onPressBonneSolution
@@ -263,7 +265,7 @@ export default class JouerJupiter1 extends Component {
         />
         <View>
           <Dialog.Container visible={this.state.visible1}>
-            <Dialog.Title>BRAVO ! </Dialog.Title>
+            <Dialog.Title style={{ color: "#35BD35" }}>BRAVO ! </Dialog.Title>
             <Dialog.Description>Tu as fini l'exercice !</Dialog.Description>
             <Dialog.Button
               label="Retour à l'accueil"
@@ -285,13 +287,50 @@ export default class JouerJupiter1 extends Component {
         </View>
         <Text>
           {"\n"}
-          {"\n"}
+          {"\n"} {"\n"}_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+          _ _ _
         </Text>
-        <Button
-          title="Abandonner"
-          color="black"
-          onPress={this.onPressAbandon}
-        />
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-end",
+            marginTop: 15
+          }}
+        >
+          <TouchableOpacity
+            style={{
+              padding: 3,
+              marginRight: 15,
+              borderWidth: 2,
+              borderColor: "#E93B58",
+              borderRadius: 15,
+              backgroundColor: "#E93B58",
+              justifyContent: "center"
+            }}
+            onPress={this.onPressAbandon}
+          >
+            <Text style={{ color: "white", padding: 4, fontStyle: "italic" }}>
+              Abandonner
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              padding: 3,
+              marginLeft: 15,
+              borderWidth: 2,
+              borderColor: "#3BBBE9",
+              borderRadius: 15,
+              backgroundColor: "#3BBBE9",
+              justifyContent: "center"
+            }}
+            onPress={() => this.setState({ visible4: true })}
+          >
+            <Text style={{ color: "white", padding: 4, fontStyle: "italic" }}>
+              Demander un indice
+            </Text>
+          </TouchableOpacity>
+        </View>
+
         <Dialog.Container visible={this.state.visible3}>
           <Dialog.Title>Es-tu sûr de vouloir abandonner ?</Dialog.Title>
           <Dialog.Button
@@ -301,6 +340,19 @@ export default class JouerJupiter1 extends Component {
           <Dialog.Button
             label="Non                         "
             onPress={this.onPressFermerLaPopUp}
+          />
+        </Dialog.Container>
+        <Dialog.Container visible={this.state.visible4}>
+          <Dialog.Title style={{ color: "#3BBBE9" }}>
+            Un petit indice pour t'aider
+          </Dialog.Title>
+          <Dialog.Description>
+            {"\n"}
+            {this.state.indices[this.state.numeroPhrase]}
+          </Dialog.Description>
+          <Dialog.Button
+            label="Merci"
+            onPress={() => this.setState({ visible4: false })}
           />
         </Dialog.Container>
       </View>
@@ -320,9 +372,9 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     marginHorizontal: 12,
     alignItems: "center",
-    backgroundColor: "#AEAEAE",
+    backgroundColor: "#E2E1E1",
     borderWidth: 2,
-    borderColor: "#AEAEAE",
+    borderColor: "#E2E1E1",
     borderRadius: 8,
     padding: 7
   },
@@ -331,9 +383,9 @@ const styles = StyleSheet.create({
     marginBottom: 50,
     marginHorizontal: 12,
     alignItems: "center",
-    backgroundColor: "#9E1EA1",
+    backgroundColor: "#AEAEAE",
     borderWidth: 2,
-    borderColor: "#9E1EA1",
+    borderColor: "#AEAEAE",
     borderRadius: 8,
     padding: 7
   },

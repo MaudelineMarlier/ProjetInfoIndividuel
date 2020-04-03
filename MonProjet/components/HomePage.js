@@ -23,8 +23,13 @@ export default class HomePage extends Component {
     // Affichage des planètes autour du Soleil
     return (
       <View style={{ alignItems: "center", backgroundColor: "white" }}>
+        <Text>{"\n"}</Text>
         <View style={styles.lignePlanete}>
-          <TouchableOpacity onPress={() => navigation.navigate("Jupiter")}>
+          <TouchableOpacity
+            onPress={() =>
+              navigation.navigate("Jupiter", { affichages: "noir" })
+            }
+          >
             <ImageBackground
               source={require("./Images/jupiter1.jpg")}
               style={{ width: 110, height: 110, marginTop: 60 }}
