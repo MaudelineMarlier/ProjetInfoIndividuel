@@ -11,7 +11,7 @@ export default class AccueilJupiter extends Component {
   }
 
   render() {
-    console.log(global.reussite);
+    console.log("globalJup" + global.reussite);
     console.log(this.state.reussite);
     const { navigation } = this.props;
     var images = [];
@@ -25,7 +25,9 @@ export default class AccueilJupiter extends Component {
             style={styles.image}
           />
           <Text style={styles.instruction}>
-            Tu as déjà fait cette exercice {"\n"}Souhaites-tu rejouer ?
+            {"\n"}
+            Tu as déjà fait cet exercice. {"                             \n"}
+            Souhaites-tu rejouer ? {"\n"}
           </Text>
           <TouchableOpacity
             onPress={() => navigation.navigate("JouerJupiter1")}
@@ -84,5 +86,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 6,
   },
-  image: { width: 200, height: 200, marginTop: 30 },
+  image: {
+    width: 200,
+    height: 200,
+    marginTop: 30,
+  },
 });

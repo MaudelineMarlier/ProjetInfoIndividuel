@@ -5,7 +5,7 @@ import {
   Button,
   TouchableOpacity,
   PropTypes,
-  Alert
+  Alert,
 } from "react-native";
 import Dialog from "react-native-dialog";
 import { Header } from "react-native-elements";
@@ -18,12 +18,12 @@ export default class Presentation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visible: true
+      visible: true,
     };
   }
   onPressFermerLaPopUp = () => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
 
@@ -31,12 +31,11 @@ export default class Presentation extends Component {
     return (
       <View>
         <Dialog.Container visible={this.state.visible}>
-          <Dialog.Title>Bienvenue dans notre système solaire </Dialog.Title>
+          <Dialog.Title>De retour dans notre système solaire </Dialog.Title>
           <Dialog.Description>
-            Tu es ici dans le but d'aider Thomas à coloniser toutes les planètes
-            du système solaire. {"\n"}Sauras-tu l'aider dans cette tâche
-            difficile ? {"\n"}A toi de réussir tous les défis qui t'attendent...
-            Pour commencer, rends-toi sur Jupiter !
+            {"\n    "}
+            Tu as déjà bien avancé dans ta conquête des planètes ! {"\n    "}
+            Essaies maintenant de récupérer Jupiter.
           </Dialog.Description>
           <Dialog.Button label="Jouer" onPress={this.onPressFermerLaPopUp} />
         </Dialog.Container>

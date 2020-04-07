@@ -78,7 +78,8 @@ export default class JouerJupiter1 extends Component {
   onPressBonneSolution = () => {
     this.setState({
       progression: this.state.progression + 0.34, // On ajoute 1/3 de la barre
-      press1: 0, // on remet le bouton gris
+      press1: 0, // on remet le bouton gris,
+      reponse: 0,
       valider: this.state.valider + 1, // ajouter 1 quand on passe à la phrase suivante pour afficher la fin (cf l88)
     });
     if (this.state.numeroPhrase < 2)
@@ -118,7 +119,7 @@ export default class JouerJupiter1 extends Component {
   };
 
   render() {
-    console.log(global.reussite);
+    console.log("jouerJup" + global.reussite);
 
     const { navigation } = this.props;
 
@@ -278,9 +279,7 @@ export default class JouerJupiter1 extends Component {
             </Dialog.Description>
             <Dialog.Button
               label="Retour à l'accueil"
-              onPress={() =>
-                navigation.navigate("Accueil", (global.reussite = 1))
-              }
+              onPress={() => navigation.navigate("Accueil")}
             />
           </Dialog.Container>
         </View>
