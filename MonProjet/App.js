@@ -7,7 +7,7 @@ import {
   Button,
   Image,
   TouchableOpacity,
-  Alert
+  Alert,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -112,19 +112,22 @@ function MyStack() {
         options={{
           title: "Bienvenue !",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           headerRight: () => (
             <TouchableOpacity
               onPress={() =>
-                alert("Clique sur une des planètes pour commencer un jeu")
+                Alert.alert(
+                  "Aide",
+                  "Clique sur une des planètes pour commencer un jeu ou sur le Soleil pour voir ton profil."
+                )
               }
             >
               <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
             </TouchableOpacity>
-          )
+          ),
         }}
       />
       <Stack.Screen
@@ -134,17 +137,19 @@ function MyStack() {
         options={{
           title: "Bienvenue sur Jupiter",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           headerRight: () => (
             <TouchableOpacity
-              onPress={() => alert("Clique sur commencer à jouer")}
+              onPress={() =>
+                Alert.alert("Aide", "Clique sur 'commencer à jouer'.")
+              }
             >
               <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
             </TouchableOpacity>
-          )
+          ),
         }}
       />
       <Stack.Screen
@@ -153,21 +158,22 @@ function MyStack() {
         options={{
           title: "C'est parti !",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           headerRight: () => (
             <TouchableOpacity
               onPress={() =>
-                alert(
-                  "Clique sur le mot que tu penses bien orthographié puis valides ta réponse"
+                Alert.alert(
+                  "Aide",
+                  "Clique sur le mot que tu penses bien orthographié puis valides ta réponse. \nTu peux demander un indice ou abandonner."
                 )
               }
             >
               <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
             </TouchableOpacity>
-          )
+          ),
         }}
       />
       <Stack.Screen
@@ -176,15 +182,17 @@ function MyStack() {
         options={{
           title: "Saturne vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
           headerTitleAlign: "center",
           headerRight: () => (
-            <TouchableOpacity onPress={() => alert("Pas d'aide disponible")}>
+            <TouchableOpacity
+              onPress={() => Alert.alert("Pas d'aide disponible")}
+            >
               <Text style={{ color: "white", marginRight: 20 }}>Aide</Text>
             </TouchableOpacity>
-          )
+          ),
         }}
       />
       <Stack.Screen
@@ -193,10 +201,10 @@ function MyStack() {
         options={{
           title: "La Terre vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
@@ -205,10 +213,10 @@ function MyStack() {
         options={{
           title: "Mars vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
@@ -217,10 +225,10 @@ function MyStack() {
         options={{
           title: "Le Soleil vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
@@ -229,10 +237,10 @@ function MyStack() {
         options={{
           title: "Mercure vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
@@ -241,10 +249,10 @@ function MyStack() {
         options={{
           title: "Neptune vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
@@ -253,10 +261,10 @@ function MyStack() {
         options={{
           title: "Uranus vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       />
       <Stack.Screen
@@ -265,10 +273,10 @@ function MyStack() {
         options={{
           title: "Venus vous accueille",
           headerStyle: {
-            backgroundColor: "#9E1EA1"
+            backgroundColor: "#9E1EA1",
           },
           headerTintColor: "#fff",
-          headerTitleAlign: "center"
+          headerTitleAlign: "center",
         }}
       />
     </Stack.Navigator>
@@ -289,6 +297,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  },
 });
