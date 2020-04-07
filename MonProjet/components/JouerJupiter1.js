@@ -15,6 +15,7 @@ import * as Progress from "react-native-progress";
 export default class JouerJupiter1 extends Component {
   constructor(props) {
     super(props);
+    global.reussite = 0;
     this.state = {
       press1: 0, // valeur pour savoir si le bouton1 est séléctionné ou non
       press2: 0, // valeur pour savoir si le bouton2 est séléctionné ou non
@@ -89,6 +90,7 @@ export default class JouerJupiter1 extends Component {
     if (this.state.valider == this.state.reponses.length - 1) {
       // Condition pour afficher la fin après la 3e phrase
       this.setState({ visible1: true });
+      global.reussite = 1;
     }
   };
 
@@ -116,6 +118,8 @@ export default class JouerJupiter1 extends Component {
   };
 
   render() {
+    console.log(global.reussite);
+
     const { navigation } = this.props;
 
     //Tableau "boutons" pour choisir l'ordre des boutons à afficher en fonction de la valeur de random
@@ -274,7 +278,9 @@ export default class JouerJupiter1 extends Component {
             </Dialog.Description>
             <Dialog.Button
               label="Retour à l'accueil"
-              onPress={() => navigation.navigate("Accueil")}
+              onPress={() =>
+                navigation.navigate("Accueil", (global.reussite = 1))
+              }
             />
           </Dialog.Container>
         </View>

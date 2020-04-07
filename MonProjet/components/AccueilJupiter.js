@@ -3,25 +3,63 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { BaseRouter } from "@react-navigation/native";
 
 export default class AccueilJupiter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      reussite: global.reussite,
+    };
+  }
+
   render() {
+    console.log(global.reussite);
+    console.log(this.state.reussite);
     const { navigation } = this.props;
-    var retour = (
-      <View style={styles.container}>
-        <Text style={styles.phraseTrou}>Phrases à trou</Text>
-        <Image source={require("./Images/jupiter1.jpg")} style={styles.image} />
-        <Text style={styles.instruction}>
-          En atterissant sur cette planète, toutes vos affaires se sont
-          renversées et du café a coulé sur vos fiches de travail. {"\n"}
-          {"\n"}
-          Sauras-tu retrouver les mots manquants ?
-        </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("JouerJupiter1")}>
-          <Text style={styles.jouer}>
-            {"  "}Commencer à jouer !{"  "}
+    var images = [];
+    var retour = "";
+    if (this.state.reussite == 1) {
+      retour = (
+        <View style={styles.container}>
+          <Text style={styles.phraseTrou}>Phrases à trou</Text>
+          <Image
+            source={require("./Images/jupiter1.jpg")}
+            style={styles.image}
+          />
+          <Text style={styles.instruction}>
+            Tu as déjà fait cette exercice {"\n"}Souhaites-tu rejouer ?
           </Text>
-        </TouchableOpacity>
-      </View>
-    );
+          <TouchableOpacity
+            onPress={() => navigation.navigate("JouerJupiter1")}
+          >
+            <Text style={styles.jouer}>
+              {"  "}Rejouer !{"  "}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      retour = (
+        <View style={styles.container}>
+          <Text style={styles.phraseTrou}>Phrases à trou</Text>
+          <Image
+            source={require("./Images/jupiter1Noir.jpg")}
+            style={styles.image}
+          />
+          <Text style={styles.instruction}>
+            En atterissant sur cette planète, toutes vos affaires se sont
+            renversées et du café a coulé sur vos fiches de travail. {"\n"}
+            {"\n"}
+            Sauras-tu retrouver les mots manquants ?
+          </Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("JouerJupiter1")}
+          >
+            <Text style={styles.jouer}>
+              {"  "}Commencer à jouer !{"  "}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      );
+    }
     return <View>{retour}</View>;
   }
 }
@@ -34,7 +72,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginRight: 15,
     marginLeft: 25,
-    alignContent: "center"
+    alignContent: "center",
   },
   jouer: {
     backgroundColor: "#D142D4",
@@ -44,7 +82,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#D142D4",
     borderRadius: 8,
-    padding: 6
+    padding: 6,
   },
-  image: { width: 200, height: 200, marginTop: 30 }
+  image: { width: 200, height: 200, marginTop: 30 },
 });
