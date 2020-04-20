@@ -119,8 +119,6 @@ export default class JouerJupiter1 extends Component {
   };
 
   render() {
-    console.log("jouerJup" + global.reussite);
-
     const { navigation } = this.props;
 
     //Tableau "boutons" pour choisir l'ordre des boutons à afficher en fonction de la valeur de random
