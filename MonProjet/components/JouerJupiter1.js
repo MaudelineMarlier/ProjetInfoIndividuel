@@ -15,7 +15,7 @@ import * as Progress from "react-native-progress";
 export default class JouerJupiter1 extends Component {
   constructor(props) {
     super(props);
-    global.reussite = 0;
+    global.reussite = 0; // Variable globale = 0 si l'exercice n'a pas été fait, 1 sinon
     this.state = {
       press1: 0, // valeur pour savoir si le bouton1 est séléctionné ou non
       press2: 0, // valeur pour savoir si le bouton2 est séléctionné ou non

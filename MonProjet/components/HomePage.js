@@ -27,14 +27,12 @@ export default class HomePage extends Component {
   }
 
   render() {
-    console.log("globalHome" + global.reussite);
-    console.log("state" + this.state.reussite);
-
     const { navigation } = this.props;
     // Affichage des planètes autour du Soleil
 
     var imageJupiter = "";
     if (global.reussite == 1) {
+      // Si l'exercice Jupiter a été réussi
       imageJupiter = (
         <ImageBackground
           source={require("./Images/jupiter1.jpg")}
@@ -42,6 +40,7 @@ export default class HomePage extends Component {
         ></ImageBackground>
       );
     } else {
+      // Si l'exercice n'a pas encore été réalisé
       imageJupiter = (
         <ImageBackground
           source={require("./Images/jupiter1Noir.jpg")}
@@ -56,12 +55,15 @@ export default class HomePage extends Component {
           alignItems: "flex-end",
         }}
       >
+        {/* Flèche de rafraichissement */}
         <TouchableOpacity onPress={() => this.setState({ help: 1 })}>
           <ImageBackground
             source={require("./Images/refresh.png")}
             style={{ width: 50, height: 50, marginRight: 10 }}
           ></ImageBackground>
         </TouchableOpacity>
+
+        {/* Affichage des 9 planètes */}
         <View style={{ alignItems: "center", backgroundColor: "white" }}>
           <View style={styles.lignePlanete}>
             <TouchableOpacity onPress={() => navigation.navigate("Mars")}>

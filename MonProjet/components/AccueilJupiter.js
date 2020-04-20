@@ -11,12 +11,11 @@ export default class AccueilJupiter extends Component {
   }
 
   render() {
-    console.log("globalJup" + global.reussite);
-    console.log(this.state.reussite);
     const { navigation } = this.props;
     var images = [];
     var retour = "";
     if (this.state.reussite == 1) {
+      // Si l'exercice Jupiter a été réussi
       retour = (
         <View style={styles.container}>
           <Text style={styles.phraseTrou}>Phrases à trou</Text>
@@ -39,6 +38,7 @@ export default class AccueilJupiter extends Component {
         </View>
       );
     } else {
+      // Si l'exercice n'a pas encore été réalisé
       retour = (
         <View style={styles.container}>
           <Text style={styles.phraseTrou}>Phrases à trou</Text>
